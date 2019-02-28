@@ -1,0 +1,22 @@
+{
+  "name": "sms-database-backend",
+  "version": "1.0.0",
+  "description": "backend of saponins mass spectrometry database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "prisma",
+    "graphql",
+    "saponins database"
+  ],
+  "author": "fy",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "graphql": "^14.1.1",
+    "graphql-yoga": "^1.17.4",
+    "prisma-client-lib": "^1.27.1"
+  }
+}

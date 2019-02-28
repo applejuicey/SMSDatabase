@@ -1,0 +1,11 @@
+endpoint: http://localhost:4466/smsd-api/dev
+datamodel: datamodel.prisma
+secret: anti-mage
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
+hooks:
+  post-deploy:
+    - prisma generate
+seed:
+  run: node ./prisma/seed.js

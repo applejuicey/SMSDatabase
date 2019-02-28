@@ -1,0 +1,47 @@
+enum RoleType {
+    ROOT,
+    ADMIN,
+    USER
+}
+
+type User {
+    id: ID! @unique
+    name: String
+    email: String! @unique
+    password: String!
+    role: RoleType! @default(value: "USER")
+}
+
+type Compound {
+    id: ID! @unique
+    commonName: String!
+    casCode: String
+    pubChemCID: String
+    chemSpiderID: String
+    smiles: String! @unique
+    chemicalFormula: String
+    positiveMSData: PositiveMSData
+    negativeMSData: NegativeMSData
+    saponinsSource: SaponinsSource
+}
+
+type PositiveMSData {
+    id: ID! @unique
+    parentValue: Float!
+    fragmentsValues: [Float!]!
+    dataSource: String
+    referenceCodes: [String!]!
+}
+
+type NegativeMSData {
+    id: ID! @unique
+    parentValue: Float!
+    fragmentsValues: [Float!]!
+    dataSource: String
+    referenceCodes: [String!]!
+}
+
+type SaponinsSource {
+    id: ID! @unique
+    sourceCodes: [String!]!
+}
