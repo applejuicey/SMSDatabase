@@ -1,0 +1,31 @@
+# import * from "../../prisma/generated/graphql-schema/prisma.graphql"
+
+type Query {
+    me: User
+    user(where: UserWhereUniqueInput!): User
+    users(where: UserWhereInput): [User!]!
+    compound(where: CompoundWhereUniqueInput!): Compound
+    compounds(where: CompoundWhereInput): [Compound!]!
+}
+
+type Mutation {
+    login(email: String!, password: String!): AuthPayload
+    createUser(data: UserCreateInput!): User
+    updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+    deleteUser(where: UserWhereUniqueInput!): User
+    createCompound(data: CompoundCreateInput!): Compound
+    updateCompound(data: CompoundUpdateInput, where: CompoundWhereUniqueInput): Compound
+    deleteCompound(where: CompoundWhereUniqueInput): Compound
+}
+
+type AuthPayload {
+    token: String!
+    currentUser: User!
+}
+
+type User {
+    id: ID!
+    name: String
+    email: String!
+    role: RoleType!
+}

@@ -14,34 +14,30 @@ type User {
 
 type Compound {
     id: ID! @unique
-    commonName: String!
-    casCode: String
-    pubChemCID: String
-    chemSpiderID: String
+    commonName: [String!]!
+    casCode: String @unique
+    pubChemCID: String @unique
+    chemSpiderID: String @unique
     smiles: String! @unique
-    chemicalFormula: String
-    positiveMSData: PositiveMSData
-    negativeMSData: NegativeMSData
-    saponinsSource: SaponinsSource
+    chemicalFormula: String!
+    msData: MSData!
+    literatureSource: LiteratureSource!
 }
 
-type PositiveMSData {
+type MSData {
     id: ID! @unique
-    parentValue: Float!
+    parentValue1: Float
+    parentValue2: Float
+    parentValue3: Float
+    parentValue4: Float
+    parentValue5: Float
+    parentValue6: Float
     fragmentsValues: [Float!]!
-    dataSource: String
+    dataSource: [String!]!
     referenceCodes: [String!]!
 }
 
-type NegativeMSData {
-    id: ID! @unique
-    parentValue: Float!
-    fragmentsValues: [Float!]!
-    dataSource: String
-    referenceCodes: [String!]!
-}
-
-type SaponinsSource {
+type LiteratureSource {
     id: ID! @unique
     sourceCodes: [String!]!
 }

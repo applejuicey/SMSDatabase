@@ -1,9 +1,11 @@
-endpoint: http://localhost:4466/smsd-api/dev
+endpoint: http://106.13.97.232:4466/smsd-api/dev
 datamodel: datamodel.prisma
 secret: anti-mage
 generate:
   - generator: javascript-client
     output: ./generated/prisma-client/
+  - generator: graphql-schema
+    output: ./generated/graphql-schema/
 hooks:
   post-deploy:
     - prisma generate
