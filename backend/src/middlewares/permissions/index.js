@@ -1,5 +1,5 @@
 const { rule, shield, and, or, not } = require('graphql-shield');
-const { verifyAndDecodeToken } = require('../utils/token-processor');
+const { verifyAndDecodeToken } = require('../../utils/token-processor');
 
 const rules = {
   isROOT: rule()(async (parent, args, context, info) => {
@@ -43,6 +43,9 @@ const permissions = shield({
     updateCompound: or(rules.isROOT, rules.isADMIN),
     deleteCompound: or(rules.isROOT, rules.isADMIN),
   }
+}, {
+  debug: false,
+  allowExternalErrors: false
 });
 
 module.exports = {
