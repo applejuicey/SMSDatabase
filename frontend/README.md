@@ -1,4 +1,4 @@
-# frontend
+# sms-database-frontend
 
 ## Project setup
 ```

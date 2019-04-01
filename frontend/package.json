@@ -7,9 +7,17 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
+  "keywords": [
+    "vue",
+    "vuex",
+    "vue-router",
+    "vuetify",
+    "saponins database"
+  ],
   "dependencies": {
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
+    "vuetify": "^1.5.8",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
