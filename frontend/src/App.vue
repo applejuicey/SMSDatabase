@@ -2,10 +2,10 @@
   <div id="app">
     <v-app id="app-wrapper">
       <top-nav-toolbar></top-nav-toolbar>
-      <v-content>
+      <v-content app>
         <router-view/>
-        <bottom-footer></bottom-footer>
       </v-content>
+      <bottom-footer></bottom-footer>
     </v-app>
   </div>
 </template>

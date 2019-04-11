@@ -1,21 +1,15 @@
 {
   "name": "sms-database-frontend",
   "version": "1.0.0",
-  "description": "frontend of saponins mass spectrometry database",
   "private": true,
+  "description": "frontend of saponins mass spectrometry database",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
-  "keywords": [
-    "vue",
-    "vuex",
-    "vue-router",
-    "vuetify",
-    "saponins database"
-  ],
   "dependencies": {
     "vue": "^2.6.6",
+    "vue-apollo": "^3.0.0-beta.11",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.8",
     "vuex": "^3.0.1"
@@ -23,6 +17,15 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.0",
     "@vue/cli-service": "^3.1.0",
+    "graphql-tag": "^2.9.0",
+    "vue-cli-plugin-apollo": "^0.19.2",
     "vue-template-compiler": "^2.5.21"
-  }
+  },
+  "keywords": [
+    "vue",
+    "vuex",
+    "vue-router",
+    "vuetify",
+    "saponins database"
+  ]
 }

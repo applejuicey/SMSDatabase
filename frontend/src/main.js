@@ -6,6 +6,7 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import zhHans from 'vuetify/es5/locale/zh-Hans';
 import en from 'vuetify/es5/locale/en';
+import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false;
 
@@ -16,10 +17,10 @@ Vue.use(Vuetify, {
   },
   theme: {
     primary: '#00BCD4',
-    secondary: '#4DD0E1',
+    secondary: '#a4c9e1',
     accent: '#84FFFF',
     error: '#f44336',
-    warning: '#ffc56d',
+    warning: '#ff9135',
     info: '#0097A7',
     success: '#4caf50'
   },
@@ -28,5 +29,6 @@ Vue.use(Vuetify, {
 new Vue({
   router,
   store,
+  apolloProvider: createProvider(),
   render: h => h(App)
 }).$mount('#app');
