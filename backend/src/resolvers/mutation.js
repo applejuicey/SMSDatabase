@@ -22,10 +22,24 @@ const Mutation = {
     return await context.prisma.createUser(args.data);
   },
   updateUser: async (parent, args, context, info) => {
-    return await context.prisma.updateUser({
-      data: args.data,
-      where: args.where
-    });
+    if (args.data.password) {
+      // 传过来的密码不为空代表新密码
+      return await context.prisma.updateUser({
+        data: args.data,
+        where: args.where
+      });
+    } else {
+      // 传过来的密码为空代表不修改密码
+      const updateObject = {
+        name: args.data.name,
+        email: args.data.email,
+        role: args.data.role
+      };
+      return await context.prisma.updateUser({
+        data: updateObject,
+        where: args.where
+      });
+    }
   },
   deleteUser: async (parent, args, context, info) => {
     return await context.prisma.deleteUser(args.where);
