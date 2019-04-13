@@ -6,7 +6,8 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import zhHans from 'vuetify/es5/locale/zh-Hans';
 import en from 'vuetify/es5/locale/en';
-import { createProvider } from './vue-apollo'
+import VueApollo from 'vue-apollo';
+import { apolloProvider } from './vue-apollo';
 
 Vue.config.productionTip = false;
 
@@ -26,9 +27,11 @@ Vue.use(Vuetify, {
   },
 });
 
+Vue.use(VueApollo);
+
 new Vue({
   router,
   store,
-  apolloProvider: createProvider(),
+  apolloProvider,
   render: h => h(App)
 }).$mount('#app');

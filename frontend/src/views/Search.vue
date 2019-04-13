@@ -25,27 +25,27 @@
                 </template>
                 <template v-slot:buttons>
                   <v-btn :loading="searchLoading" :disabled="searchLoading" @click="search()"
-                         color="primary" class="hidden-xs-only" flat>
+                         color="success" class="hidden-xs-only" flat>
                     <v-icon>search</v-icon>Search
                   </v-btn>
                   <v-btn :loading="searchLoading" :disabled="searchLoading" @click="search()"
-                         color="primary" class="hidden-sm-and-up" icon flat>
+                         color="success" class="hidden-sm-and-up" icon flat>
                     <v-icon>search</v-icon>
                   </v-btn>
                   <v-btn @click="loadExample()"
-                         color="secondary" class="hidden-xs-only" flat>
+                         color="primary" class="hidden-xs-only" flat>
                     <v-icon>launch</v-icon>Load Example
                   </v-btn>
                   <v-btn @click="loadExample()"
-                         color="secondary" class="hidden-sm-and-up" icon flat>
+                         color="primary" class="hidden-sm-and-up" icon flat>
                     <v-icon>launch</v-icon>
                   </v-btn>
                   <v-btn @click="resetForm()"
-                         color="warning" class="hidden-xs-only" flat>
+                         color="error" class="hidden-xs-only" flat>
                     <v-icon>refresh</v-icon>Reset
                   </v-btn>
                   <v-btn @click="resetForm()"
-                         color="warning" class="hidden-sm-and-up" icon flat>
+                         color="error" class="hidden-sm-and-up" icon flat>
                     <v-icon>refresh</v-icon>
                   </v-btn>
                 </template>
@@ -74,27 +74,27 @@
                 </template>
                 <template v-slot:buttons>
                   <v-btn :loading="searchLoading" :disabled="searchLoading" @click="search()"
-                         color="primary" class="hidden-xs-only" flat>
+                         color="success" class="hidden-xs-only" flat>
                     <v-icon>search</v-icon>Search
                   </v-btn>
                   <v-btn :loading="searchLoading" :disabled="searchLoading" @click="search()"
-                         color="primary" class="hidden-sm-and-up" icon flat>
+                         color="success" class="hidden-sm-and-up" icon flat>
                     <v-icon>search</v-icon>
                   </v-btn>
                   <v-btn @click="loadExample()"
-                         color="secondary" class="hidden-xs-only" flat>
+                         color="primary" class="hidden-xs-only" flat>
                     <v-icon>launch</v-icon>Load Example
                   </v-btn>
                   <v-btn @click="loadExample()"
-                         color="secondary" class="hidden-sm-and-up" icon flat>
+                         color="primary" class="hidden-sm-and-up" icon flat>
                     <v-icon>launch</v-icon>
                   </v-btn>
                   <v-btn @click="resetForm()"
-                         color="warning" class="hidden-xs-only" flat>
+                         color="error" class="hidden-xs-only" flat>
                     <v-icon>refresh</v-icon>Reset
                   </v-btn>
                   <v-btn @click="resetForm()"
-                         color="warning" class="hidden-sm-and-up" icon flat>
+                         color="error" class="hidden-sm-and-up" icon flat>
                     <v-icon>refresh</v-icon>
                   </v-btn>
                 </template>
