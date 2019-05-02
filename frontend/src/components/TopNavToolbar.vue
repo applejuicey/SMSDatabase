@@ -16,7 +16,7 @@
         <v-btn flat class="white--text"
                @click="toCompoundPage()">
           <v-icon>list_alt</v-icon>
-          Compound
+          Metabolite
         </v-btn>
         <v-divider inset vertical></v-divider>
         <v-btn flat class="white--text"

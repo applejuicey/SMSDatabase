@@ -6,10 +6,10 @@
         <v-flex lg6 xs12>
           <v-card>
             <v-card-title class="justify-center primary-title">
-              <div class="headline">Primary Search</div>
+              <div class="headline">Parent Ion Search</div>
             </v-card-title>
             <v-card-text class="text-xs-center">
-              <div>Specify your primary search criteria and get results in this card.</div>
+              <div>Specify your parent ion search criteria and get results in this card.</div>
               <search-form>
                 <template v-slot:fields>
                   <v-select label="Ion Mode" name="ion-mode-select"
@@ -58,10 +58,10 @@
         <v-flex lg6 xs12>
           <v-card>
             <v-card-title class="justify-center primary-title">
-              <div class="headline">Secondary Search</div>
+              <div class="headline">Daughter Ion Search</div>
             </v-card-title>
             <v-card-text class="text-xs-center">
-              <div>After your primary search, you can execute a secondary search with fragment values in this card.</div>
+              <div>After your parent ion search, you can execute a daughter ion search with fragment values in this card.</div>
               <search-form>
                 <template v-slot:fields>
                   <template v-for="fragment in fragmentArray">
@@ -74,7 +74,7 @@
                 </template>
                 <template v-slot:buttons>
                   <v-btn :loading="searchLoading" :disabled="searchLoading" @click="search()"
-                         color="success" class="hidden-xs-only" flat>
+                         color="success" class="hidden-xs-only" flat disabled>
                     <v-icon>search</v-icon>Search
                   </v-btn>
                   <v-btn :loading="searchLoading" :disabled="searchLoading" @click="search()"
@@ -133,6 +133,10 @@
         id: 3,
         label: 'FragmentValue',
         fragmentValue: null,
+      },{
+        id: 4,
+        label: 'FragmentValue',
+        fragmentValue: null,
       }],
     }),
     components: {
@@ -142,8 +146,8 @@
     computed: {
       adductTypeItems: function () {
         const adductTypeMap = new Map()
-            .set('Positive', ['M+H', 'M+Na', 'M+NH4'])
-            .set('Negative', ['M-H', 'M-Cl', 'M+FA-H']);
+            .set('Positive', ['[M+H]+', '[M+Na]+', '[M+NH4]+'])
+            .set('Negative', ['[M-H]-', '[M+Cl]-', '[M-H+FA]-']);
         return adductTypeMap.get(this.ionMode) || [];
       }
     },

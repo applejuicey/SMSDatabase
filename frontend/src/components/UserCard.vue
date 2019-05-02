@@ -22,13 +22,29 @@
                   <td class="text-xs-left">{{ props.item.rightCellText }}</td>
                 </template>
               </v-data-table>
+              <template v-if="isAdmin">
+                <br>
+                <v-card>
+                  <v-card-text>
+                    As ADMIN, you are granted with the following authorities:
+                    <v-btn color="primary" block outline
+                           @click="toAdminUsers()">
+                      Manage Users
+                    </v-btn>
+                    <v-btn color="primary" block outline
+                           @click="toAdminCompounds()">
+                      Manage Compounds
+                    </v-btn>
+                  </v-card-text>
+                </v-card>
+              </template>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="primary"
                      @click.stop="updateUserProfileDialogShowed = true">
                 <v-icon>arrow_upward</v-icon>
-                Update User Profile
+                Update My Profile
               </v-btn>
               <v-btn color="error"
                      @click="logout()">
@@ -146,7 +162,14 @@
     computed: {
       updateButtonDisabled: function () {
         return !this.updateUserProfileFormValid;
-      }
+      },
+      isAdmin: function () {
+        try {
+          return this.userProfileObjectOld.role === 'ADMIN';
+        } catch (error) {
+          return false;
+        }
+      },
     },
     watch: {
       userProfileObjectOld: function (newVal, oldVAL) {
@@ -224,6 +247,12 @@
           this.updateLoading = false;
         }
         this.updateUserProfileDialogShowed = false;
+      },
+      toAdminUsers: function () {
+        this.$router.push({ name: 'admin-users' })
+      },
+      toAdminCompounds: function () {
+        this.$router.push({ name: 'admin-compounds' })
       },
     },
   }

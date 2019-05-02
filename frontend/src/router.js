@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import User from './views/User.vue';
 import PageNotFound from './views/PageNotFound.vue';
 
 Vue.use(Router);
@@ -32,6 +31,22 @@ export default new Router({
       path: '/user',
       name: 'user',
       component: () => import('./views/User.vue')
+    },
+    {
+      path: '/admin',
+      component: () => import('./views/Admin.vue'),
+      children: [
+        {
+          path: 'users',
+          name: 'admin-users',
+          component: () => import('./views/AdminUsers.vue'),
+        },
+        {
+          path: 'compounds',
+          name: 'admin-compounds',
+          component: () => import('./views/AdminCompounds.vue'),
+        },
+      ],
     },
     {
       path: '*',

@@ -1,9 +1,9 @@
 <template>
   <div class="fill-height custom-bgi">
-    <div v-if="alreadyLoggedIn">
+    <div v-if="alreadyLoggedIn" key="user-card-div">
       <user-card @logoutSucceeded="processLogoutSucceeded()"></user-card>
     </div>
-    <div v-else>
+    <div v-else key="login-form-div">
       <login-form @loginSucceeded="processLoginSucceeded()"></login-form>
     </div>
     <v-snackbar v-model="snackbarShowed"
