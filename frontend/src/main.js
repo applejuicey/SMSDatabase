@@ -22,7 +22,7 @@ Vue.use(Vuetify, {
     accent: '#84FFFF',
     error: '#f44336',
     warning: '#ff9135',
-    info: '#0097A7',
+    info: '#2196F3',
     success: '#4caf50'
   },
 });

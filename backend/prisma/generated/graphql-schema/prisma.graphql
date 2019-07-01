@@ -20,12 +20,14 @@ type BatchPayload {
 
 type Compound {
   id: ID!
-  commonName: [String!]!
+  uniqueID: String!
+  commonName: String!
+  smiles: String!
+  chemicalFormula: String!
+  structurePicAdd: String
   casCode: String
   pubChemCID: String
   chemSpiderID: String
-  smiles: String!
-  chemicalFormula: String!
   msData: MSData!
   literatureSource: LiteratureSource!
 }
@@ -36,17 +38,15 @@ type CompoundConnection {
   aggregate: AggregateCompound!
 }
 
-input CompoundCreatecommonNameInput {
-  set: [String!]
-}
-
 input CompoundCreateInput {
-  commonName: CompoundCreatecommonNameInput
+  uniqueID: String!
+  commonName: String!
+  smiles: String!
+  chemicalFormula: String!
+  structurePicAdd: String
   casCode: String
   pubChemCID: String
   chemSpiderID: String
-  smiles: String!
-  chemicalFormula: String!
   msData: MSDataCreateOneInput!
   literatureSource: LiteratureSourceCreateOneInput!
 }
@@ -59,16 +59,22 @@ type CompoundEdge {
 enum CompoundOrderByInput {
   id_ASC
   id_DESC
+  uniqueID_ASC
+  uniqueID_DESC
+  commonName_ASC
+  commonName_DESC
+  smiles_ASC
+  smiles_DESC
+  chemicalFormula_ASC
+  chemicalFormula_DESC
+  structurePicAdd_ASC
+  structurePicAdd_DESC
   casCode_ASC
   casCode_DESC
   pubChemCID_ASC
   pubChemCID_DESC
   chemSpiderID_ASC
   chemSpiderID_DESC
-  smiles_ASC
-  smiles_DESC
-  chemicalFormula_ASC
-  chemicalFormula_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -77,12 +83,14 @@ enum CompoundOrderByInput {
 
 type CompoundPreviousValues {
   id: ID!
-  commonName: [String!]!
+  uniqueID: String!
+  commonName: String!
+  smiles: String!
+  chemicalFormula: String!
+  structurePicAdd: String
   casCode: String
   pubChemCID: String
   chemSpiderID: String
-  smiles: String!
-  chemicalFormula: String!
 }
 
 type CompoundSubscriptionPayload {
@@ -103,28 +111,28 @@ input CompoundSubscriptionWhereInput {
   NOT: [CompoundSubscriptionWhereInput!]
 }
 
-input CompoundUpdatecommonNameInput {
-  set: [String!]
-}
-
 input CompoundUpdateInput {
-  commonName: CompoundUpdatecommonNameInput
+  uniqueID: String
+  commonName: String
+  smiles: String
+  chemicalFormula: String
+  structurePicAdd: String
   casCode: String
   pubChemCID: String
   chemSpiderID: String
-  smiles: String
-  chemicalFormula: String
   msData: MSDataUpdateOneRequiredInput
   literatureSource: LiteratureSourceUpdateOneRequiredInput
 }
 
 input CompoundUpdateManyMutationInput {
-  commonName: CompoundUpdatecommonNameInput
+  uniqueID: String
+  commonName: String
+  smiles: String
+  chemicalFormula: String
+  structurePicAdd: String
   casCode: String
   pubChemCID: String
   chemSpiderID: String
-  smiles: String
-  chemicalFormula: String
 }
 
 input CompoundWhereInput {
@@ -142,6 +150,76 @@ input CompoundWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  uniqueID: String
+  uniqueID_not: String
+  uniqueID_in: [String!]
+  uniqueID_not_in: [String!]
+  uniqueID_lt: String
+  uniqueID_lte: String
+  uniqueID_gt: String
+  uniqueID_gte: String
+  uniqueID_contains: String
+  uniqueID_not_contains: String
+  uniqueID_starts_with: String
+  uniqueID_not_starts_with: String
+  uniqueID_ends_with: String
+  uniqueID_not_ends_with: String
+  commonName: String
+  commonName_not: String
+  commonName_in: [String!]
+  commonName_not_in: [String!]
+  commonName_lt: String
+  commonName_lte: String
+  commonName_gt: String
+  commonName_gte: String
+  commonName_contains: String
+  commonName_not_contains: String
+  commonName_starts_with: String
+  commonName_not_starts_with: String
+  commonName_ends_with: String
+  commonName_not_ends_with: String
+  smiles: String
+  smiles_not: String
+  smiles_in: [String!]
+  smiles_not_in: [String!]
+  smiles_lt: String
+  smiles_lte: String
+  smiles_gt: String
+  smiles_gte: String
+  smiles_contains: String
+  smiles_not_contains: String
+  smiles_starts_with: String
+  smiles_not_starts_with: String
+  smiles_ends_with: String
+  smiles_not_ends_with: String
+  chemicalFormula: String
+  chemicalFormula_not: String
+  chemicalFormula_in: [String!]
+  chemicalFormula_not_in: [String!]
+  chemicalFormula_lt: String
+  chemicalFormula_lte: String
+  chemicalFormula_gt: String
+  chemicalFormula_gte: String
+  chemicalFormula_contains: String
+  chemicalFormula_not_contains: String
+  chemicalFormula_starts_with: String
+  chemicalFormula_not_starts_with: String
+  chemicalFormula_ends_with: String
+  chemicalFormula_not_ends_with: String
+  structurePicAdd: String
+  structurePicAdd_not: String
+  structurePicAdd_in: [String!]
+  structurePicAdd_not_in: [String!]
+  structurePicAdd_lt: String
+  structurePicAdd_lte: String
+  structurePicAdd_gt: String
+  structurePicAdd_gte: String
+  structurePicAdd_contains: String
+  structurePicAdd_not_contains: String
+  structurePicAdd_starts_with: String
+  structurePicAdd_not_starts_with: String
+  structurePicAdd_ends_with: String
+  structurePicAdd_not_ends_with: String
   casCode: String
   casCode_not: String
   casCode_in: [String!]
@@ -184,34 +262,6 @@ input CompoundWhereInput {
   chemSpiderID_not_starts_with: String
   chemSpiderID_ends_with: String
   chemSpiderID_not_ends_with: String
-  smiles: String
-  smiles_not: String
-  smiles_in: [String!]
-  smiles_not_in: [String!]
-  smiles_lt: String
-  smiles_lte: String
-  smiles_gt: String
-  smiles_gte: String
-  smiles_contains: String
-  smiles_not_contains: String
-  smiles_starts_with: String
-  smiles_not_starts_with: String
-  smiles_ends_with: String
-  smiles_not_ends_with: String
-  chemicalFormula: String
-  chemicalFormula_not: String
-  chemicalFormula_in: [String!]
-  chemicalFormula_not_in: [String!]
-  chemicalFormula_lt: String
-  chemicalFormula_lte: String
-  chemicalFormula_gt: String
-  chemicalFormula_gte: String
-  chemicalFormula_contains: String
-  chemicalFormula_not_contains: String
-  chemicalFormula_starts_with: String
-  chemicalFormula_not_starts_with: String
-  chemicalFormula_ends_with: String
-  chemicalFormula_not_ends_with: String
   msData: MSDataWhereInput
   literatureSource: LiteratureSourceWhereInput
   AND: [CompoundWhereInput!]
@@ -221,10 +271,12 @@ input CompoundWhereInput {
 
 input CompoundWhereUniqueInput {
   id: ID
+  uniqueID: String
+  commonName: String
+  smiles: String
   casCode: String
   pubChemCID: String
   chemSpiderID: String
-  smiles: String
 }
 
 type LiteratureSource {
@@ -350,9 +402,14 @@ type MSData {
   parentValue4: Float
   parentValue5: Float
   parentValue6: Float
-  fragmentsValues: [Float!]!
-  dataSource: [String!]!
-  referenceCodes: [String!]!
+  fragmentsValues1: [Float!]!
+  fragmentsValues2: [Float!]!
+  dataSource1: [String!]!
+  referenceCodes1: [String!]!
+  dataSource2: [String!]!
+  referenceCodes2: [String!]!
+  spectrumPicAddArray1: [String!]!
+  spectrumPicAddArray2: [String!]!
 }
 
 type MSDataConnection {
@@ -361,11 +418,19 @@ type MSDataConnection {
   aggregate: AggregateMSData!
 }
 
-input MSDataCreatedataSourceInput {
+input MSDataCreatedataSource1Input {
   set: [String!]
 }
 
-input MSDataCreatefragmentsValuesInput {
+input MSDataCreatedataSource2Input {
+  set: [String!]
+}
+
+input MSDataCreatefragmentsValues1Input {
+  set: [Float!]
+}
+
+input MSDataCreatefragmentsValues2Input {
   set: [Float!]
 }
 
@@ -376,9 +441,14 @@ input MSDataCreateInput {
   parentValue4: Float
   parentValue5: Float
   parentValue6: Float
-  fragmentsValues: MSDataCreatefragmentsValuesInput
-  dataSource: MSDataCreatedataSourceInput
-  referenceCodes: MSDataCreatereferenceCodesInput
+  fragmentsValues1: MSDataCreatefragmentsValues1Input
+  fragmentsValues2: MSDataCreatefragmentsValues2Input
+  dataSource1: MSDataCreatedataSource1Input
+  referenceCodes1: MSDataCreatereferenceCodes1Input
+  dataSource2: MSDataCreatedataSource2Input
+  referenceCodes2: MSDataCreatereferenceCodes2Input
+  spectrumPicAddArray1: MSDataCreatespectrumPicAddArray1Input
+  spectrumPicAddArray2: MSDataCreatespectrumPicAddArray2Input
 }
 
 input MSDataCreateOneInput {
@@ -386,7 +456,19 @@ input MSDataCreateOneInput {
   connect: MSDataWhereUniqueInput
 }
 
-input MSDataCreatereferenceCodesInput {
+input MSDataCreatereferenceCodes1Input {
+  set: [String!]
+}
+
+input MSDataCreatereferenceCodes2Input {
+  set: [String!]
+}
+
+input MSDataCreatespectrumPicAddArray1Input {
+  set: [String!]
+}
+
+input MSDataCreatespectrumPicAddArray2Input {
   set: [String!]
 }
 
@@ -424,9 +506,14 @@ type MSDataPreviousValues {
   parentValue4: Float
   parentValue5: Float
   parentValue6: Float
-  fragmentsValues: [Float!]!
-  dataSource: [String!]!
-  referenceCodes: [String!]!
+  fragmentsValues1: [Float!]!
+  fragmentsValues2: [Float!]!
+  dataSource1: [String!]!
+  referenceCodes1: [String!]!
+  dataSource2: [String!]!
+  referenceCodes2: [String!]!
+  spectrumPicAddArray1: [String!]!
+  spectrumPicAddArray2: [String!]!
 }
 
 type MSDataSubscriptionPayload {
@@ -454,16 +541,29 @@ input MSDataUpdateDataInput {
   parentValue4: Float
   parentValue5: Float
   parentValue6: Float
-  fragmentsValues: MSDataUpdatefragmentsValuesInput
-  dataSource: MSDataUpdatedataSourceInput
-  referenceCodes: MSDataUpdatereferenceCodesInput
+  fragmentsValues1: MSDataUpdatefragmentsValues1Input
+  fragmentsValues2: MSDataUpdatefragmentsValues2Input
+  dataSource1: MSDataUpdatedataSource1Input
+  referenceCodes1: MSDataUpdatereferenceCodes1Input
+  dataSource2: MSDataUpdatedataSource2Input
+  referenceCodes2: MSDataUpdatereferenceCodes2Input
+  spectrumPicAddArray1: MSDataUpdatespectrumPicAddArray1Input
+  spectrumPicAddArray2: MSDataUpdatespectrumPicAddArray2Input
 }
 
-input MSDataUpdatedataSourceInput {
+input MSDataUpdatedataSource1Input {
   set: [String!]
 }
 
-input MSDataUpdatefragmentsValuesInput {
+input MSDataUpdatedataSource2Input {
+  set: [String!]
+}
+
+input MSDataUpdatefragmentsValues1Input {
+  set: [Float!]
+}
+
+input MSDataUpdatefragmentsValues2Input {
   set: [Float!]
 }
 
@@ -474,9 +574,14 @@ input MSDataUpdateInput {
   parentValue4: Float
   parentValue5: Float
   parentValue6: Float
-  fragmentsValues: MSDataUpdatefragmentsValuesInput
-  dataSource: MSDataUpdatedataSourceInput
-  referenceCodes: MSDataUpdatereferenceCodesInput
+  fragmentsValues1: MSDataUpdatefragmentsValues1Input
+  fragmentsValues2: MSDataUpdatefragmentsValues2Input
+  dataSource1: MSDataUpdatedataSource1Input
+  referenceCodes1: MSDataUpdatereferenceCodes1Input
+  dataSource2: MSDataUpdatedataSource2Input
+  referenceCodes2: MSDataUpdatereferenceCodes2Input
+  spectrumPicAddArray1: MSDataUpdatespectrumPicAddArray1Input
+  spectrumPicAddArray2: MSDataUpdatespectrumPicAddArray2Input
 }
 
 input MSDataUpdateManyMutationInput {
@@ -486,9 +591,14 @@ input MSDataUpdateManyMutationInput {
   parentValue4: Float
   parentValue5: Float
   parentValue6: Float
-  fragmentsValues: MSDataUpdatefragmentsValuesInput
-  dataSource: MSDataUpdatedataSourceInput
-  referenceCodes: MSDataUpdatereferenceCodesInput
+  fragmentsValues1: MSDataUpdatefragmentsValues1Input
+  fragmentsValues2: MSDataUpdatefragmentsValues2Input
+  dataSource1: MSDataUpdatedataSource1Input
+  referenceCodes1: MSDataUpdatereferenceCodes1Input
+  dataSource2: MSDataUpdatedataSource2Input
+  referenceCodes2: MSDataUpdatereferenceCodes2Input
+  spectrumPicAddArray1: MSDataUpdatespectrumPicAddArray1Input
+  spectrumPicAddArray2: MSDataUpdatespectrumPicAddArray2Input
 }
 
 input MSDataUpdateOneRequiredInput {
@@ -498,7 +608,19 @@ input MSDataUpdateOneRequiredInput {
   connect: MSDataWhereUniqueInput
 }
 
-input MSDataUpdatereferenceCodesInput {
+input MSDataUpdatereferenceCodes1Input {
+  set: [String!]
+}
+
+input MSDataUpdatereferenceCodes2Input {
+  set: [String!]
+}
+
+input MSDataUpdatespectrumPicAddArray1Input {
+  set: [String!]
+}
+
+input MSDataUpdatespectrumPicAddArray2Input {
   set: [String!]
 }
 

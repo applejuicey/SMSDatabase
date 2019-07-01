@@ -12,7 +12,7 @@ const LOGIN = gql`mutation ($email: String!, $password: String!) {
                     }
                   }`;
 
-const ME = gql`query{
+const ME = gql`query {
                  me {
                    id
                    email
@@ -30,4 +30,136 @@ const UPDATEUSER = gql`mutation ($data: UserUpdateInput!, $where: UserWhereUniqu
                          }
                        }`;
 
-export { LOGIN, ME, UPDATEUSER };
+const COMPOUNDWHERE = gql`query ($where: CompoundWhereUniqueInput!) {
+                                  compound(where: $where) {
+                                    id
+                                    uniqueID
+                                    structurePicAdd
+                                    commonName
+                                    chemicalFormula
+                                    smiles
+                                    casCode
+                                    chemSpiderID
+                                    pubChemCID
+                                    msData{
+                                      parentValue1
+                                      parentValue2
+                                      parentValue3
+                                      parentValue4
+                                      parentValue5
+                                      parentValue6
+                                      fragmentsValues1
+                                      fragmentsValues2
+                                      dataSource1
+                                      referenceCodes1
+                                      dataSource2
+                                      referenceCodes2
+                                      spectrumPicAddArray1
+                                      spectrumPicAddArray2
+                                    }
+                                    literatureSource{
+                                      sourceCodes
+                                    }
+                                  }
+                                }`;
+
+const COMPOUNDSWHERE = gql`query ($where: CompoundWhereInput) {
+                                    compounds(where: $where) {
+                                      id
+                                      uniqueID
+                                      structurePicAdd
+                                      commonName
+                                      chemicalFormula
+                                      smiles
+                                      casCode
+                                      chemSpiderID
+                                      pubChemCID
+                                      msData{
+                                        parentValue1
+                                        parentValue2
+                                        parentValue3
+                                        parentValue4
+                                        parentValue5
+                                        parentValue6
+                                        fragmentsValues1
+                                        fragmentsValues2
+                                        dataSource1
+                                        referenceCodes1
+                                        dataSource2
+                                        referenceCodes2
+                                        spectrumPicAddArray1
+                                        spectrumPicAddArray2
+                                      }
+                                      literatureSource{
+                                        sourceCodes
+                                      }
+                                    }
+                                  }`;
+
+const CREATECOMPOUND = gql`mutation ($data: CompoundCreateInput!) {
+                                      createCompound(data: $data) {
+                                          id
+                                          uniqueID
+                                          structurePicAdd
+                                          commonName
+                                          chemicalFormula
+                                          smiles
+                                          casCode
+                                          chemSpiderID
+                                          pubChemCID
+                                          msData{
+                                              parentValue1
+                                              parentValue2
+                                              parentValue3
+                                              parentValue4
+                                              parentValue5
+                                              parentValue6
+                                              fragmentsValues1
+                                              fragmentsValues2
+                                              dataSource1
+                                              referenceCodes1
+                                              dataSource2
+                                              referenceCodes2
+                                              spectrumPicAddArray1
+                                              spectrumPicAddArray2
+                                          }
+                                          literatureSource{
+                                              sourceCodes
+                                          }
+                                      }
+                                  }`;
+
+const UPDATECOMPOUND = gql`mutation ($data: CompoundUpdateInput!, $where: CompoundWhereUniqueInput!) {
+                                      updateCompound(data: $data, where: $where) {
+                                          id
+                                          uniqueID
+                                          structurePicAdd
+                                          commonName
+                                          chemicalFormula
+                                          smiles
+                                          casCode
+                                          chemSpiderID
+                                          pubChemCID
+                                          msData{
+                                              parentValue1
+                                              parentValue2
+                                              parentValue3
+                                              parentValue4
+                                              parentValue5
+                                              parentValue6
+                                              fragmentsValues1
+                                              fragmentsValues2
+                                              dataSource1
+                                              referenceCodes1
+                                              dataSource2
+                                              referenceCodes2
+                                              spectrumPicAddArray1
+                                              spectrumPicAddArray2
+                                          }
+                                          literatureSource{
+                                              sourceCodes
+                                          }
+                                      }
+                                  }`;
+
+export { LOGIN, ME, UPDATEUSER, COMPOUNDWHERE, COMPOUNDSWHERE, CREATECOMPOUND, UPDATECOMPOUND };

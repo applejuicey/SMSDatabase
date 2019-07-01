@@ -14,12 +14,14 @@ type User {
 
 type Compound {
     id: ID! @unique
-    commonName: [String!]!
+    uniqueID: String! @unique
+    commonName: String! @unique
+    smiles: String! @unique
+    chemicalFormula: String!
+    structurePicAdd: String
     casCode: String @unique
     pubChemCID: String @unique
     chemSpiderID: String @unique
-    smiles: String! @unique
-    chemicalFormula: String!
     msData: MSData!
     literatureSource: LiteratureSource!
 }
@@ -32,9 +34,14 @@ type MSData {
     parentValue4: Float
     parentValue5: Float
     parentValue6: Float
-    fragmentsValues: [Float!]!
-    dataSource: [String!]!
-    referenceCodes: [String!]!
+    fragmentsValues1: [Float!]!
+    fragmentsValues2: [Float!]!
+    dataSource1: [String!]!
+    referenceCodes1: [String!]!
+    dataSource2: [String!]!
+    referenceCodes2: [String!]!
+    spectrumPicAddArray1: [String!]!
+    spectrumPicAddArray2: [String!]!
 }
 
 type LiteratureSource {

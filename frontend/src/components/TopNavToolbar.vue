@@ -15,7 +15,7 @@
         <v-divider inset vertical></v-divider>
         <v-btn flat class="white--text"
                @click="toCompoundPage()">
-          <v-icon>list_alt</v-icon>
+          <v-icon>list</v-icon>
           Metabolite
         </v-btn>
         <v-divider inset vertical></v-divider>
@@ -33,7 +33,7 @@
         <v-divider inset vertical></v-divider>
         <v-btn icon
                @click="toCompoundPage()">
-          <v-icon>list_alt</v-icon>
+          <v-icon>list</v-icon>
         </v-btn>
         <v-divider inset vertical></v-divider>
         <v-btn icon
@@ -62,7 +62,7 @@
         this.$router.push({ name: 'search' })
       },
       toCompoundPage: function () {
-        this.$router.push({ name: 'compound', params: { id: 'fake'} })
+        this.$router.push({ name: 'search-metabolite' })
       },
       toUserPage: function () {
         this.$router.push({ name: 'user' })

@@ -15,14 +15,6 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/compound/:id',
-      name: 'compound',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "compound" */ './views/Compound.vue')
-    },
-    {
       path: '/search',
       name: 'search',
       component: () => import('./views/Search.vue')
@@ -33,20 +25,39 @@ export default new Router({
       component: () => import('./views/User.vue')
     },
     {
-      path: '/admin',
-      component: () => import('./views/Admin.vue'),
-      children: [
-        {
-          path: 'users',
-          name: 'admin-users',
-          component: () => import('./views/AdminUsers.vue'),
-        },
-        {
-          path: 'compounds',
-          name: 'admin-compounds',
-          component: () => import('./views/AdminCompounds.vue'),
-        },
-      ],
+      path: '/metabolite/search',
+      name: 'search-metabolite',
+      component: () => import('./views/MetaboliteSearch.vue')
+    },
+    {
+      path: '/metabolite/manage',
+      name: 'manage-metabolite',
+      component: () => import('./views/MetaboliteManage.vue')
+    },
+    {
+      path: '/metabolite/add',
+      name: 'add-metabolite',
+      component: () => import('./views/MetaboliteAdd.vue'),
+    },
+    {
+      path: '/metabolite/add-batch',
+      name: 'add-metabolite-batch',
+      component: () => import('./views/MetaboliteAddBatch.vue'),
+    },
+    {
+      path: '/metabolite/view/:uniqueID',
+      name: 'view-metabolite',
+      component: () => import('./views/MetaboliteView.vue'),
+    },
+    {
+      path: '/metabolite/edit/:uniqueID',
+      name: 'edit-metabolite',
+      component: () => import('./views/MetaboliteEdit.vue'),
+    },
+    {
+      path: '/metabolite/delete/:uniqueID',
+      name: 'delete-metabolite',
+      component: () => import('./views/MetaboliteDelete.vue'),
     },
     {
       path: '*',

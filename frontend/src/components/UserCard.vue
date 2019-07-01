@@ -33,7 +33,7 @@
                     </v-btn>
                     <v-btn color="primary" block outline
                            @click="toAdminCompounds()">
-                      Manage Compounds
+                      Manage Metabolites
                     </v-btn>
                   </v-card-text>
                 </v-card>
@@ -48,7 +48,7 @@
               </v-btn>
               <v-btn color="error"
                      @click="logout()">
-                <v-icon>logout</v-icon>
+                <v-icon>power_settings_new</v-icon>
                 Logout
               </v-btn>
             </v-card-actions>
@@ -249,10 +249,10 @@
         this.updateUserProfileDialogShowed = false;
       },
       toAdminUsers: function () {
-        this.$router.push({ name: 'admin-users' })
+        this.$router.push({ name: 'manage-user' })
       },
       toAdminCompounds: function () {
-        this.$router.push({ name: 'admin-compounds' })
+        this.$router.push({ name: 'manage-metabolite' })
       },
     },
   }
