@@ -12,25 +12,49 @@
               <v-divider class="primary"></v-divider>
               <div class="mb-3">
                 <v-subheader class="title">General Information</v-subheader>
-                <metabolite-table-view :metaboliteFields="generalInformationArray"></metabolite-table-view>
+                <v-data-table :items="generalInformationArray" hide-actions hide-headers>
+                  <template v-slot:items="props">
+                    <td class="text-xs-left left-column">{{ props.item.key }}:</td>
+                    <td class="text-xs-left right-column">{{ props.item.value }}</td>
+                  </template>
+                </v-data-table>
               </div>
               <v-divider class="primary"></v-divider>
 
               <div class="mb-3">
                 <v-subheader class="title">Spectrum Information(Negative)</v-subheader>
-                <metabolite-table-view :metaboliteFields="spectrumInfoPositiveArray"></metabolite-table-view>
+                <v-data-table :items="spectrumInfoPositiveArray" hide-actions hide-headers>
+                  <template v-slot:items="props">
+                    <td class="text-xs-left left-column">{{ props.item.key }}:</td>
+                    <td class="text-xs-left right-column">{{ props.item.value }}</td>
+                  </template>
+                </v-data-table>
               </div>
               <v-divider class="primary"></v-divider>
 
               <div class="mb-3">
                 <v-subheader class="title">Spectrum Information(Positive)</v-subheader>
-                <metabolite-table-view :metaboliteFields="spectrumInfoNegativeArray"></metabolite-table-view>
+                <v-data-table :items="spectrumInfoNegativeArray" hide-actions hide-headers>
+                  <template v-slot:items="props">
+                    <td class="text-xs-left left-column">{{ props.item.key }}:</td>
+                    <td class="text-xs-left right-column">{{ props.item.value }}</td>
+                  </template>
+                </v-data-table>
               </div>
               <v-divider class="primary"></v-divider>
 
               <div class="mb-3">
                 <v-subheader class="title">Images</v-subheader>
-                <metabolite-table-view :metaboliteFields="imagesAddArray" :buttons="buttons"></metabolite-table-view>
+                <v-data-table :items="imagesAddArray" hide-actions hide-headers>
+                  <template v-slot:items="props">
+                    <td class="text-xs-left left-column">{{ props.item.key }}:</td>
+                    <td class="text-xs-left right-column justify-center px-0">
+                      <v-icon small color="success" class="mr-2 cursor-pointer" @click="showImageModal(props.item.key, props.item.value)">
+                        search
+                      </v-icon>
+                    </td>
+                  </template>
+                </v-data-table>
               </div>
               <v-divider class="primary"></v-divider>
 
@@ -124,17 +148,38 @@
           </div>
         </v-flex>
       </v-layout>
+
+      <v-dialog v-model="modal" persistent max-width="600px">
+        <v-card>
+          <v-toolbar color="primary" dark>
+            <v-toolbar-title>{{ modalHeader }}</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text class="text-xs-center">
+            <v-img :src="modalImageAddress" contain v-if="modalImageProvided"></v-img>
+            <span v-else class="subheading">
+            {{modalImageMessage}}
+          </span>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" @click="closeImageModal()">
+              <v-icon>close</v-icon>
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
     </v-container>
   </div>
 </template>
 
 <script>
-  import MetaboliteTableView from '@/components/MetaboliteTableView.vue';
   import { COMPOUNDWHERE } from '../utils/apolloString';
   export default {
     name: 'view-metabolite',
     components: {
-      MetaboliteTableView,
+
     },
     data: () => ({
       queryResult: 'null',
@@ -144,9 +189,11 @@
       spectrumInfoPositiveArray: [],
       spectrumInfoNegativeArray: [],
       imagesAddArray: [],
-      buttons: {
-        view: true,
-      },
+      modal: false,
+      modalHeader: '',
+      modalImageProvided: false,
+      modalImageMessage: '',
+      modalImageAddress: '',
     }),
     computed: {
 
@@ -195,7 +242,7 @@
           // console.log(result.data.compound);
           if (result.data.compound) {
             self.compoundDetail = result.data.compound;
-            console.log(self.compoundDetail);
+            // console.log(self.compoundDetail);
             self.processMetaboliteInfo();
             self.queryResult = 'exist';
           } else {
@@ -213,6 +260,28 @@
       toNameQueryPage: function () {
         this.$router.push({ name: 'search-metabolite' })
       },
+      showImageModal: function (imgType, imgAddress) {
+        const imageMap = new Map()
+            .set('Structure Picture', ['/images/structure/', '.jpg'])
+            .set('LC-MS/MS Spectrum - 10V, Negative', ['/images/ms/negative/10/', '_10.png'])
+            .set('LC-MS/MS Spectrum - 40V, Negative', ['/images/ms/negative/40/', '_40.png'])
+            .set('LC-MS/MS Spectrum - 70V, Negative', ['/images/ms/negative/70/', '_70.png'])
+            .set('LC-MS/MS Spectrum - 200V, Positive', ['/images/ms/positive/200/', '_200.png']);
+        const imageAddressFragmentsArray = imageMap.get(imgType);
+        if (imgAddress === 'empty' || imgAddress === null || imgAddress === undefined) {
+          this.modalImageProvided = false;
+          this.modalImageMessage = 'No image provided!';
+        } else {
+          this.modalImageProvided = true;
+          this.modalImageAddress = imageAddressFragmentsArray[0] + imgAddress +imageAddressFragmentsArray[1];
+          // console.log(this.modalImageAddress);
+        }
+        this.modalHeader = imgType;
+        this.modal = true;
+      },
+      closeImageModal: function () {
+        this.modal = false;
+      },
     },
     watch: {
       $route() {
@@ -226,5 +295,10 @@
 </script>
 
 <style scoped>
-
+  .left-column {
+    width: 40%;
+  }
+  .right-column {
+    width: 60%;
+  }
 </style>

@@ -239,7 +239,11 @@
     methods: {
       processRaw: function (str) {
         if (str) {
-          return str.split(',')
+          if (str.trim() !== '') {
+            return str.split(',')
+          } else {
+            return [];
+          }
         } else {
           return [];
         }

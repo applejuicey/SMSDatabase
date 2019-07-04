@@ -270,11 +270,18 @@
 
     },
     methods: {
-      processRaw: function (str) {
-        if (str) {
-          return str.split(',')
+      processRaw: function (something) {
+        if (something.split) {
+          // 是字符串
+          if (something.trim() !== '') {
+            // 不是空字符串
+            return something.split(',');
+          } else {
+            return [];
+          }
         } else {
-          return [];
+          // 是数组
+          return something;
         }
       },
       processImages: function (identifier) {
@@ -285,20 +292,22 @@
         }
       },
       setCheckboxInitial: function () {
+        console.log(this.formData)
         this.selectedImagesArray = [];
-        if (this.formData.structurePicAdd !== 'empty') {
+        const noImageArray = ['empty', undefined, null];
+        if (!noImageArray.includes(this.formData.structurePicAdd)) {
           this.selectedImagesArray.push('sp');
         }
-        if (this.formData.msData.spectrumPicAddArray1[0] !== 'empty') {
+        if (!noImageArray.includes(this.formData.msData.spectrumPicAddArray1[0])) {
           this.selectedImagesArray.push('ms10n');
         }
-        if (this.formData.msData.spectrumPicAddArray1[1] !== 'empty') {
+        if (!noImageArray.includes(this.formData.msData.spectrumPicAddArray1[1])) {
           this.selectedImagesArray.push('ms40n');
         }
-        if (this.formData.msData.spectrumPicAddArray1[2] !== 'empty') {
+        if (!noImageArray.includes(this.formData.msData.spectrumPicAddArray1[2])) {
           this.selectedImagesArray.push('ms70n');
         }
-        if (this.formData.msData.spectrumPicAddArray2[0] !== 'empty') {
+        if (!noImageArray.includes(this.formData.msData.spectrumPicAddArray2[0])) {
           this.selectedImagesArray.push('ms200p');
         }
       },
@@ -318,7 +327,7 @@
           if (result.data.compound) {
             self.formData = result.data.compound;
             self.setCheckboxInitial();
-            // console.log(self.formData);
+            console.log(self.formData);
             self.queryResult = 'exist';
           } else {
             self.queryResult = 'not_exist';

@@ -9,7 +9,12 @@
             </v-toolbar>
             <v-card-text class="text-xs-center">
               <p>Are you sure to delete metabolite with details:</p>
-              <metabolite-table-view :metaboliteFields="generalInformationArray"></metabolite-table-view>
+              <v-data-table :items="generalInformationArray" hide-actions hide-headers>
+                <template v-slot:items="props">
+                  <td class="text-xs-left left-column">{{ props.item.key }}:</td>
+                  <td class="text-xs-left right-column">{{ props.item.value }}</td>
+                </template>
+              </v-data-table>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -87,12 +92,11 @@
 </template>
 
 <script>
-  import MetaboliteTableView from '@/components/MetaboliteTableView.vue';
   import { COMPOUNDWHERE, DELETECOMPOUND } from '../utils/apolloString';
   export default {
     name: 'delete-metabolite',
     components: {
-      MetaboliteTableView,
+
     },
     data: () => ({
       queryResult: 'null',

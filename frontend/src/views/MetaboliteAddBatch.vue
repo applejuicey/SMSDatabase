@@ -292,9 +292,6 @@
             self.snackbarMessage = 'Parsing complete!';
             self.canUpload = true;
             console.log(self.postDataArray);
-            console.log(self.postDataArray[0].smiles)
-            console.log(self.postDataArray[1].smiles)
-            console.log(self.postDataArray[0].smiles === self.postDataArray[1].smiles)
           };
         } catch (error) {
           console.error(error);
@@ -320,8 +317,8 @@
                 data: self.postDataArray[i],
               },
             });
-            console.log(`Upload metabolite ${self.postDataArray[i].uniqueID} complete! Result:`);
-            console.log(result.data);
+            // console.log(`Upload metabolite ${self.postDataArray[i].uniqueID} complete! Result:`);
+            // console.log(result.data);
             successNumber = successNumber + 1;
           } catch (error) {
             console.error(`Upload metabolite ${self.postDataArray[i].uniqueID} failed! Error: ` + error);
