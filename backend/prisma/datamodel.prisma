@@ -16,7 +16,7 @@ type Compound {
     id: ID! @unique
     uniqueID: String! @unique
     commonName: String! @unique
-    smiles: String! @unique
+    smiles: String!
     chemicalFormula: String!
     structurePicAdd: String
     casCode: String @unique

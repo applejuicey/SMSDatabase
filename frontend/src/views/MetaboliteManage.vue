@@ -8,14 +8,14 @@
               <div class="headline">Manage Metabolites</div>
             </v-card-title>
             <v-card-text class="text-xs-center">
-              <v-btn :loading="listAllLoading" :disabled="listAllLoading"
-                     @click="listAll()" class="hidden-xs-only" color="success">
-                <v-icon>list</v-icon>List All Metabolites
-              </v-btn>
-              <v-btn :loading="listAllLoading" :disabled="listAllLoading"
-                  @click="listAll()" class="hidden-sm-and-up" color="success" icon>
-                <v-icon>list</v-icon>
-              </v-btn>
+<!--              <v-btn :loading="listAllLoading" :disabled="listAllLoading"-->
+<!--                     @click="listAll()" class="hidden-xs-only" color="success">-->
+<!--                <v-icon>list</v-icon>List All Metabolites-->
+<!--              </v-btn>-->
+<!--              <v-btn :loading="listAllLoading" :disabled="listAllLoading"-->
+<!--                  @click="listAll()" class="hidden-sm-and-up" color="success" icon>-->
+<!--                <v-icon>list</v-icon>-->
+<!--              </v-btn>-->
               <v-btn @click="toAddPage()" color="primary" class="hidden-xs-only">
                 <v-icon>add</v-icon>Add metabolite
               </v-btn>
@@ -28,9 +28,9 @@
               <v-btn @click="toAddBatchPage()" color="primary" class="hidden-sm-and-up" icon>
                 <v-icon>playlist_add</v-icon>
               </v-btn>
-              <search-form>
+              <search-form @submit.native.prevent>
                 <template v-slot:fields>
-                  <v-text-field label="Keyword" placeholder="Enter your keyword here."
+                  <v-text-field label="Common Name" placeholder="Enter the common name here."
                                 v-model="keyword" autofocus="autofocus" @keyup.enter="search()"
                                 clearable></v-text-field>
                 </template>
@@ -53,8 +53,33 @@
                   </v-btn>
                 </template>
               </search-form>
-              <search-result-table :headers="headers" :results="results" :buttons="buttons"
-                                   :pagination="pagination" :tableLoading="tableLoading"></search-result-table>
+              <div class="pa-2">
+                <v-data-table :headers="headers" :items="results" :pagination.sync="pagination" :loading="tableLoading" class="elevation-1">
+                  <v-progress-linear v-slot:progress color="primary" indeterminate></v-progress-linear>
+                  <template v-slot:items="props">
+                    <td>{{ props.item.uniqueID }}</td>
+                    <td class="justify-center layout px-0">
+                      <v-icon small color="success" class="mr-2 cursor-pointer" @click="viewItem(props.item.uniqueID)">
+                        search
+                      </v-icon>
+                      <v-icon small color="primary" class="mr-2 cursor-pointer" @click="editItem(props.item.uniqueID)">
+                        edit
+                      </v-icon>
+                      <v-icon small color="error" class="mr-2 cursor-pointer" @click="deleteItem(props.item.uniqueID)">
+                        delete
+                      </v-icon>
+                    </td>
+                    <td>{{ props.item.commonName }}</td>
+                    <td>{{ props.item.chemicalFormula }}</td>
+                    <td>{{ props.item.msData.parentValue1 }}</td>
+                    <td>{{ props.item.msData.parentValue2 }}</td>
+                    <td>{{ props.item.msData.parentValue3 }}</td>
+                    <td>{{ props.item.msData.parentValue4 }}</td>
+                    <td>{{ props.item.msData.parentValue5 }}</td>
+                    <td>{{ props.item.msData.parentValue6 }}</td>
+                  </template>
+                </v-data-table>
+              </div>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -65,31 +90,29 @@
 
 <script>
   import SearchForm from '@/components/SearchForm.vue';
-  import SearchResultTable from '@/components/SearchResultTable.vue';
   import { COMPOUNDSWHERE } from '../utils/apolloString';
   export default {
     name: 'manage-metabolite',
     components: {
       SearchForm,
-      SearchResultTable,
     },
     data: () => ({
       keyword: null,
       searchLoading: false,
       listAllLoading: false,
       headers: [
-        { text: 'Unique ID', align: 'center', sortable: true, value: 'uniqueID'},
-        { text: 'Common Name', align: 'center', sortable: true, value: 'commonName'},
-        { text: 'CAS', align: 'center', sortable: true, value: 'casCode' },
-        { text: 'Chemical Formula', align: 'center', sortable: true, value: 'chemicalFormula' },
+        { text: 'SMSD ID', align: 'center', sortable: true, value: 'uniqueID'},
         { text: 'Actions', align: 'center', sortable: false },
+        { text: 'Common Name', align: 'center', sortable: true, value: 'commonName'},
+        { text: 'Chemical Formula', align: 'center', sortable: true, value: 'chemicalFormula' },
+        { text: '[M-H]-', align: 'center', sortable: true, value: 'msData.parentValue1' },
+        { text: '[M+Cl]-', align: 'center', sortable: true, value: 'msData.parentValue2' },
+        { text: '[M+FA-H]-', align: 'center', sortable: true, value: 'msData.parentValue3' },
+        { text: '[M+H]+', align: 'center', sortable: true, value: 'msData.parentValue4' },
+        { text: '[M+Na]+', align: 'center', sortable: true, value: 'msData.parentValue5' },
+        { text: '[M+NH4]+', align: 'center', sortable: true, value: 'msData.parentValue6' },
       ],
       results: [],
-      buttons: {
-        view: true,
-        edit: true,
-        delete: true,
-      },
       pagination: {
         descending: false,
         page: 1,
@@ -97,7 +120,6 @@
       },
       tableLoading: false,
     }),
-
     mounted () {
 
     },
@@ -116,12 +138,12 @@
               },
             },
           });
-          console.log(result.data.compounds);
+          // console.log(result.data.compounds);
           self.results = result.data.compounds;
           self.searchLoading = false;
           self.tableLoading = false;
         } catch (error) {
-          console.log(error);
+          console.error('Error occurred when executing ms search: ', error);
           self.searchLoading = false;
           self.tableLoading = false;
         }
@@ -143,12 +165,12 @@
               },
             },
           });
-          console.log(result.data.compounds);
+          // console.log(result.data.compounds);
           self.results = result.data.compounds;
           self.listAllLoading = false;
           self.tableLoading = false;
         } catch (error) {
-          console.log(error);
+          console.error('Error occurred when executing list all search: ', error);
           self.listAllLoading = false;
           self.tableLoading = false;
         }
@@ -158,6 +180,27 @@
       },
       toAddBatchPage: function () {
         this.$router.push({ name: 'add-metabolite-batch' })
+      },
+      viewItem: function (id) {
+        const { href } = this.$router.resolve({
+          name: "view-metabolite",
+          params:{ uniqueID: id}
+        });
+        window.open(href, '_blank');
+      },
+      editItem: function (id) {
+        const { href } = this.$router.resolve({
+          name: "edit-metabolite",
+          params:{ uniqueID: id}
+        });
+        window.open(href, '_blank');
+      },
+      deleteItem: function (id) {
+        const { href } = this.$router.resolve({
+          name: "delete-metabolite",
+          params:{ uniqueID: id}
+        });
+        window.open(href, '_blank');
       },
     },
   }

@@ -85,7 +85,7 @@
             .set('LC-MS/MS Spectrum - 70V, Negative', ['/images/ms/negative/70/', '_70.png'])
             .set('LC-MS/MS Spectrum - 200V, Positive', ['/images/ms/positive/200/', '_200.png']);
         const imageAddressFragmentsArray = imageMap.get(imgType);
-        if (imgAddress !== 'empty') {
+        if (imgAddress !== 'empty' && imgAddress !== null && imgAddress !== undefined) {
           this.modalImageProvided = true;
           this.modalImageAddress = imageAddressFragmentsArray[0] + imgAddress +imageAddressFragmentsArray[1];
           // console.log(this.modalImageAddress);

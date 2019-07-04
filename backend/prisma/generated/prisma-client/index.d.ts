@@ -300,7 +300,6 @@ export type CompoundWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
   uniqueID?: String;
   commonName?: String;
-  smiles?: String;
   casCode?: String;
   pubChemCID?: String;
   chemSpiderID?: String;

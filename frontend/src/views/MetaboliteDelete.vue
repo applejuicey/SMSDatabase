@@ -8,7 +8,8 @@
               <v-toolbar-title>Confirm Delete Metabolite -- {{$route.params.uniqueID}}</v-toolbar-title>
             </v-toolbar>
             <v-card-text class="text-xs-center">
-
+              <p>Are you sure to delete metabolite with details:</p>
+              <metabolite-table-view :metaboliteFields="generalInformationArray"></metabolite-table-view>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -26,12 +27,6 @@
               </v-btn>
             </v-card-actions>
           </v-card>
-          <v-alert :value="true" color="error" class="text-xs-center">
-            <span class="title">
-              The metabolite queried do not exist!
-            </span>
-          </v-alert>
-
         </v-flex>
       </v-layout>
       <v-layout align-center row wrap v-else-if="queryResult === 'null'">
@@ -92,13 +87,22 @@
 </template>
 
 <script>
-  import { COMPOUNDWHERE } from '../utils/apolloString';
+  import MetaboliteTableView from '@/components/MetaboliteTableView.vue';
+  import { COMPOUNDWHERE, DELETECOMPOUND } from '../utils/apolloString';
   export default {
     name: 'delete-metabolite',
+    components: {
+      MetaboliteTableView,
+    },
     data: () => ({
       queryResult: 'null',
+      queryError: '',
       compoundDetail: {},
+      generalInformationArray: [],
     }),
+    computed: {
+
+    },
     methods: {
       loadMetabolite: async function () {
         let self = this;
@@ -116,6 +120,13 @@
           if (result.data.compound) {
             self.compoundDetail = result.data.compound;
             // console.log(self.compoundDetail);
+            self.generalInformationArray.push({ key: 'SMSD ID', value: this.compoundDetail.uniqueID });
+            self.generalInformationArray.push({ key: 'Common Name', value: this.compoundDetail.commonName });
+            self.generalInformationArray.push({ key: 'Chemical Formula', value: this.compoundDetail.chemicalFormula });
+            self.generalInformationArray.push({ key: 'CAS Code', value: this.compoundDetail.casCode });
+            self.generalInformationArray.push({ key: 'ChemSpider ID', value: this.compoundDetail.chemSpiderID });
+            self.generalInformationArray.push({ key: 'PubChem CID', value: this.compoundDetail.pubChemCID });
+            self.generalInformationArray.push({ key: 'SMILES', value: this.compoundDetail.smiles });
             self.queryResult = 'exist';
           } else {
             self.queryResult = 'not_exist';
@@ -126,8 +137,21 @@
           self.queryError = error;
         }
       },
-      confirmDelete: function () {
-
+      confirmDelete: async function () {
+        let self = this;
+        try {
+          await self.$apollo.mutate({
+            mutation: DELETECOMPOUND,
+            variables: {
+              where: {
+                uniqueID: self.$route.params.uniqueID,
+              },
+            },
+          });
+          location.reload();
+        } catch (error) {
+          console.error('Error occurred when deleting metabolite: ', error);
+        }
       },
       toManagePage: function () {
         this.$router.push({ name: 'manage-metabolite' })

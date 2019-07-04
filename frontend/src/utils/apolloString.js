@@ -162,4 +162,14 @@ const UPDATECOMPOUND = gql`mutation ($data: CompoundUpdateInput!, $where: Compou
                                       }
                                   }`;
 
-export { LOGIN, ME, UPDATEUSER, COMPOUNDWHERE, COMPOUNDSWHERE, CREATECOMPOUND, UPDATECOMPOUND };
+const DELETECOMPOUND = gql`mutation ($where: CompoundWhereUniqueInput) {
+                                          deleteCompound(where: $where) {
+                                              id
+                                              uniqueID
+                                              commonName
+                                              chemicalFormula
+                                              smiles
+                                          }
+                                      }`;
+
+export { LOGIN, ME, UPDATEUSER, COMPOUNDWHERE, COMPOUNDSWHERE, CREATECOMPOUND, UPDATECOMPOUND, DELETECOMPOUND };

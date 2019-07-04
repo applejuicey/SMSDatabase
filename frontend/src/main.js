@@ -14,7 +14,7 @@ Vue.config.productionTip = false;
 Vue.use(Vuetify, {
   lang: {
     locales: { zhHans, en },
-    current: 'zhHans'
+    current: 'en'
   },
   theme: {
     primary: '#00BCD4',

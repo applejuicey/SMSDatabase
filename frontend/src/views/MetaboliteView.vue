@@ -195,7 +195,7 @@
           // console.log(result.data.compound);
           if (result.data.compound) {
             self.compoundDetail = result.data.compound;
-            // console.log(self.compoundDetail);
+            console.log(self.compoundDetail);
             self.processMetaboliteInfo();
             self.queryResult = 'exist';
           } else {

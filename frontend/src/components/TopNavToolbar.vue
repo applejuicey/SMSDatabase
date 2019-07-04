@@ -8,6 +8,12 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn flat class="white--text"
+               @click="toClassifyPage()">
+          <v-icon>view_module</v-icon>
+          Classify
+        </v-btn>
+        <v-divider inset vertical></v-divider>
+        <v-btn flat class="white--text"
                @click="toSearchPage()">
           <v-icon>search</v-icon>
           Search
@@ -63,6 +69,9 @@
       },
       toCompoundPage: function () {
         this.$router.push({ name: 'search-metabolite' })
+      },
+      toClassifyPage: function () {
+        this.$router.push({ name: 'classify' })
       },
       toUserPage: function () {
         this.$router.push({ name: 'user' })

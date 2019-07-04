@@ -27,10 +27,10 @@
                 <v-card>
                   <v-card-text>
                     As ADMIN, you are granted with the following authorities:
-                    <v-btn color="primary" block outline
-                           @click="toAdminUsers()">
-                      Manage Users
-                    </v-btn>
+<!--                    <v-btn color="primary" block outline-->
+<!--                           @click="toAdminUsers()">-->
+<!--                      Manage Users-->
+<!--                    </v-btn>-->
                     <v-btn color="primary" block outline
                            @click="toAdminCompounds()">
                       Manage Metabolites
@@ -248,9 +248,9 @@
         }
         this.updateUserProfileDialogShowed = false;
       },
-      toAdminUsers: function () {
-        this.$router.push({ name: 'manage-user' })
-      },
+      // toAdminUsers: function () {
+      //   this.$router.push({ name: 'manage-user' })
+      // },
       toAdminCompounds: function () {
         this.$router.push({ name: 'manage-metabolite' })
       },

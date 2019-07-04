@@ -274,7 +274,6 @@ input CompoundWhereUniqueInput {
   id: ID
   uniqueID: String
   commonName: String
-  smiles: String
   casCode: String
   pubChemCID: String
   chemSpiderID: String

@@ -15,6 +15,11 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/classify',
+      name: 'classify',
+      component: () => import('./views/Classify.vue')
+    },
+    {
       path: '/search',
       name: 'search',
       component: () => import('./views/Search.vue')

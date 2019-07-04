@@ -133,7 +133,7 @@
                   <div class="title">Section4: Images</div>
                 </v-card-title>
                 <v-card-text class="text-xs-center">
-                  <p class="subheading">Please check the boxes where you have upload the related images.</p>
+                  <p class="subheading">Please check the boxes where you have the related images uploaded.</p>
                   <v-form ref="metaboliteInfoForm4">
                     <v-container>
                       <v-layout>

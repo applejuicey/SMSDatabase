@@ -44,8 +44,27 @@
                   </v-btn>
                 </template>
               </search-form>
-              <search-result-table :headers="headers1" :results="results1" :buttons="buttons"
-                                   :pagination="pagination1" :tableLoading="tableLoading1"></search-result-table>
+              <div class="pa-2">
+                <v-data-table :headers="headers1" :items="results1" :pagination.sync="pagination1" :loading="tableLoading1" class="elevation-1">
+                  <v-progress-linear v-slot:progress color="primary" indeterminate></v-progress-linear>
+                  <template v-slot:items="props">
+                    <td>{{ props.item.uniqueID }}</td>
+                    <td class="justify-center layout px-0">
+                      <v-icon small color="success" class="mr-2 cursor-pointer" @click="viewItem(props.item.uniqueID)">
+                        search
+                      </v-icon>
+                    </td>
+                    <td>{{ props.item.commonName }}</td>
+                    <td>{{ props.item.chemicalFormula }}</td>
+                    <td>{{ props.item.msData.parentValue1 }}</td>
+                    <td>{{ props.item.msData.parentValue2 }}</td>
+                    <td>{{ props.item.msData.parentValue3 }}</td>
+                    <td>{{ props.item.msData.parentValue4 }}</td>
+                    <td>{{ props.item.msData.parentValue5 }}</td>
+                    <td>{{ props.item.msData.parentValue6 }}</td>
+                  </template>
+                </v-data-table>
+              </div>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -87,22 +106,24 @@
                   </v-btn>
                 </template>
               </search-form>
-              <v-data-table :headers="headers2" :items="results2" :pagination.sync="pagination2" :loading="tableLoading2"
-                            class="elevation-1">
-                <v-progress-linear v-slot:progress color="primary" indeterminate></v-progress-linear>
-                <template v-slot:items="props">
-                  <td>{{ props.item.matchCounter }}</td>
-                  <td>{{ props.item.matchRate }}</td>
-                  <td>{{ props.item.uniqueID }}</td>
-                  <td>{{ props.item.commonName }}</td>
-                  <td>{{ props.item.chemicalFormula }}</td>
-                  <td class="justify-center layout px-0">
-                    <v-icon small color="success" class="mr-2 cursor-pointer" @click="viewItem(props.item.uniqueID)">
-                      search
-                    </v-icon>
-                  </td>
-                </template>
-              </v-data-table>
+              <div class="pa-2">
+                <v-data-table :headers="headers2" :items="results2" :pagination.sync="pagination2" :loading="tableLoading2"
+                              class="elevation-1">
+                  <v-progress-linear v-slot:progress color="primary" indeterminate></v-progress-linear>
+                  <template v-slot:items="props">
+                    <td>{{ props.item.matchCounter }}</td>
+                    <td>{{ props.item.matchRate }}</td>
+                    <td class="justify-center layout px-0">
+                      <v-icon small color="success" class="mr-2 cursor-pointer" @click="viewItem(props.item.uniqueID)">
+                        search
+                      </v-icon>
+                    </td>
+                    <td>{{ props.item.uniqueID }}</td>
+                    <td>{{ props.item.commonName }}</td>
+                    <td>{{ props.item.chemicalFormula }}</td>
+                  </template>
+                </v-data-table>
+              </div>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -123,7 +144,6 @@
 
 <script>
   import SearchForm from '@/components/SearchForm.vue';
-  import SearchResultTable from '@/components/SearchResultTable.vue';
   import { COMPOUNDSWHERE } from '../utils/apolloString';
   export default {
     name: 'search',
@@ -142,24 +162,26 @@
       searchDisabled2: true,
       headers1: [
         { text: 'SMSD ID', align: 'center', sortable: true, value: 'uniqueID'},
-        { text: 'Common Name', align: 'center', sortable: true, value: 'commonName'},
-        { text: 'CAS', align: 'center', sortable: true, value: 'casCode' },
-        { text: 'Chemical Formula', align: 'center', sortable: true, value: 'chemicalFormula' },
         { text: 'Actions', align: 'center', sortable: false },
+        { text: 'Common Name', align: 'center', sortable: true, value: 'commonName'},
+        { text: 'Chemical Formula', align: 'center', sortable: true, value: 'chemicalFormula' },
+        { text: '[M-H]-', align: 'center', sortable: true, value: 'msData.parentValue1' },
+        { text: '[M+Cl]-', align: 'center', sortable: true, value: 'msData.parentValue2' },
+        { text: '[M+FA-H]-', align: 'center', sortable: true, value: 'msData.parentValue3' },
+        { text: '[M+H]+', align: 'center', sortable: true, value: 'msData.parentValue4' },
+        { text: '[M+Na]+', align: 'center', sortable: true, value: 'msData.parentValue5' },
+        { text: '[M+NH4]+', align: 'center', sortable: true, value: 'msData.parentValue6' },
       ],
       headers2: [
         { text: 'Match Count', align: 'center', sortable: true, value: 'matchCounter' },
         { text: 'Match Rate(%)', align: 'center', sortable: true, value: 'matchRate' },
+        { text: 'Actions', align: 'center', sortable: false },
         { text: 'SMSD ID', align: 'center', sortable: true, value: 'uniqueID'},
         { text: 'Common Name', align: 'center', sortable: true, value: 'commonName'},
         { text: 'Chemical Formula', align: 'center', sortable: true, value: 'chemicalFormula' },
-        { text: 'Actions', align: 'center', sortable: false },
       ],
       results1: [],
       results2: [],
-      buttons: {
-        view: true,
-      },
       pagination1: {
         descending: false,
         page: 1,
@@ -181,7 +203,6 @@
     }),
     components: {
       SearchForm,
-      SearchResultTable,
     },
     computed: {
       adductTypeItems: function () {
@@ -219,7 +240,7 @@
         let returnedObject = {};
         returnedObject[lowerBoundName] = lowerBoundValue;
         returnedObject[upperBoundName] = upperBoundValue;
-        console.log('returnedObject', returnedObject);
+        // console.log('returnedObject', returnedObject);
         return returnedObject;
       },
       checkInside: function (databaseValue, userInputValue) {
@@ -253,13 +274,13 @@
               },
             },
           });
-          console.log(result.data.compounds);
+          // console.log(result.data.compounds);
           self.results1 = result.data.compounds;
           self.searchLoading1 = false;
           self.searchDisabled2 = self.results1.length === 0;
           self.tableLoading1 = false;
         } catch (error) {
-          console.log(error);
+          console.error('Error occurred when executing ms search: ', error);
           self.searchLoading1 = false;
           self.tableLoading1 = false;
         }
@@ -281,7 +302,7 @@
           } else {
             //error
           }
-          console.log(arrayFromDatabase);
+          // console.log(arrayFromDatabase);
           if (arrayFromDatabase.length === 0) {
             //error
             return;
@@ -290,7 +311,7 @@
           let userInputArray = [];
           if (this.fragmentValuesRaw.split) {
             userInputArray = this.fragmentValuesRaw.split('\n').map((item)=>{return parseFloat(item)});
-            console.log(userInputArray);
+            // console.log(userInputArray);
             // 迭代用户的输入数组，按每个元素构造区间U，迭代数组A，检查数组A中的每个元素是否在区间U内，在则counter+1
             let counter = 0;
             for (let j = 0; j < userInputArray.length; j++) {
@@ -328,7 +349,11 @@
         this.fragmentValuesRaw = '945.5428\n783.49\n621.4372\n459.3844\n375.2905';
       },
       viewItem: function (id) {
-        this.$router.push({ name: 'view-metabolite', params: { uniqueID: id} })
+        const { href } = this.$router.resolve({
+          name: "view-metabolite",
+          params:{ uniqueID: id}
+        });
+        window.open(href, '_blank');
       },
     },
   }
