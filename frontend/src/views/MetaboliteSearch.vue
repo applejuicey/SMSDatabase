@@ -121,7 +121,7 @@
         }
       },
       loadExample: function () {
-        this.keyword = 'Ginsenoside';
+        this.keyword = 'Ginsenoside Rb2';
       },
       viewItem: function (id) {
         const { href } = this.$router.resolve({

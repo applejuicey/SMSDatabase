@@ -149,7 +149,7 @@
         }
       },
       loadExample: function () {
-        this.keyword = 'Ginsenoside';
+        this.keyword = 'Ginsenoside Rb2';
       },
       listAll: async function () {
         const self = this;

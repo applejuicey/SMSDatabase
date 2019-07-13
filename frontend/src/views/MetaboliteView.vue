@@ -23,7 +23,7 @@
 
               <div class="mb-3">
                 <v-subheader class="title">Spectrum Information(Negative)</v-subheader>
-                <v-data-table :items="spectrumInfoPositiveArray" hide-actions hide-headers>
+                <v-data-table :items="spectrumInfoNegativeArray" hide-actions hide-headers>
                   <template v-slot:items="props">
                     <td class="text-xs-left left-column">{{ props.item.key }}:</td>
                     <td class="text-xs-left right-column">{{ props.item.value }}</td>
@@ -34,7 +34,7 @@
 
               <div class="mb-3">
                 <v-subheader class="title">Spectrum Information(Positive)</v-subheader>
-                <v-data-table :items="spectrumInfoNegativeArray" hide-actions hide-headers>
+                <v-data-table :items="spectrumInfoPositiveArray" hide-actions hide-headers>
                   <template v-slot:items="props">
                     <td class="text-xs-left left-column">{{ props.item.key }}:</td>
                     <td class="text-xs-left right-column">{{ props.item.value }}</td>
@@ -199,6 +199,28 @@
 
     },
     methods: {
+      sugarOrParentClassifier: function (originalArray, identifier) {
+        if (originalArray.length === 0) {
+          return [];
+        }
+        let sugarArray = [];
+        let parentArray = [];
+        for (let item of originalArray) {
+          const trunc = parseFloat((item + '').split('.')[0]);
+          const fraction = parseFloat('0.' + (item + '').split('.')[1]);
+          const z = -0.572 * trunc + 1627.277 * fraction;
+          if (z >= 32.12) {
+            parentArray.push(item);
+          } else {
+            sugarArray.push(item);
+          }
+        }
+        if (identifier === 'sugar') {
+          return sugarArray;
+        } else if (identifier === 'parent') {
+          return parentArray;
+        }
+      },
       processMetaboliteInfo: function () {
         this.generalInformationArray.push({ key: 'SMSD ID', value: this.compoundDetail.uniqueID });
         this.generalInformationArray.push({ key: 'Common Name', value: this.compoundDetail.commonName });
@@ -208,19 +230,19 @@
         this.generalInformationArray.push({ key: 'PubChem CID', value: this.compoundDetail.pubChemCID });
         this.generalInformationArray.push({ key: 'SMILES', value: this.compoundDetail.smiles });
         this.generalInformationArray.push({ key: 'Reference Sources of Saponins', value: this.compoundDetail.literatureSource.sourceCodes });
-        this.spectrumInfoPositiveArray.push({ key: '1.[M-H]-', value: this.compoundDetail.msData.parentValue1 });
-        this.spectrumInfoPositiveArray.push({ key: '2.[M+CL]-', value: this.compoundDetail.msData.parentValue2 });
-        this.spectrumInfoPositiveArray.push({ key: '3.[M-H+FA]-', value: this.compoundDetail.msData.parentValue3 });
-        this.spectrumInfoPositiveArray.push({ key: 'MS Parent Fragment Ions', value: this.compoundDetail.msData.fragmentsValues1 });
-        this.spectrumInfoPositiveArray.push({ key: 'MS Sugar Fragment Ions', value: this.compoundDetail.msData.fragmentsValues1 });
-        this.spectrumInfoPositiveArray.push({ key: 'MS Fragmentation Data from Reference Standards', value: this.compoundDetail.msData.dataSource1 });
-        this.spectrumInfoPositiveArray.push({ key: 'References Sources of MS Fragmentation Data', value: this.compoundDetail.msData.referenceCodes1 });
-        this.spectrumInfoNegativeArray.push({ key: '4.[M+H]+', value: this.compoundDetail.msData.parentValue4 });
-        this.spectrumInfoNegativeArray.push({ key: '5.[M+Na]+', value: this.compoundDetail.msData.parentValue5 });
-        this.spectrumInfoNegativeArray.push({ key: '6.[M+NH4]+', value: this.compoundDetail.msData.parentValue6 });
-        this.spectrumInfoNegativeArray.push({ key: 'MS Fragment Ions:', value: this.compoundDetail.msData.fragmentsValues2 });
-        this.spectrumInfoNegativeArray.push({ key: 'MS Fragmentation Data from Reference Standards', value: this.compoundDetail.msData.dataSource2 });
-        this.spectrumInfoNegativeArray.push({ key: 'References Sources of MS Fragmentation Data', value: this.compoundDetail.msData.referenceCodes2 });
+        this.spectrumInfoNegativeArray.push({ key: '1.[M-H]-', value: this.compoundDetail.msData.parentValue1 });
+        this.spectrumInfoNegativeArray.push({ key: '2.[M+CL]-', value: this.compoundDetail.msData.parentValue2 });
+        this.spectrumInfoNegativeArray.push({ key: '3.[M-H+FA]-', value: this.compoundDetail.msData.parentValue3 });
+        this.spectrumInfoNegativeArray.push({ key: 'MS Parent Fragment Ions', value: this.sugarOrParentClassifier(this.compoundDetail.msData.fragmentsValues1, 'parent') });
+        this.spectrumInfoNegativeArray.push({ key: 'MS Sugar Fragment Ions', value: this.sugarOrParentClassifier(this.compoundDetail.msData.fragmentsValues1, 'sugar') });
+        this.spectrumInfoNegativeArray.push({ key: 'MS Fragmentation Data from Reference Standards', value: this.compoundDetail.msData.dataSource1 });
+        this.spectrumInfoNegativeArray.push({ key: 'References Sources of MS Fragmentation Data', value: this.compoundDetail.msData.referenceCodes1 });
+        this.spectrumInfoPositiveArray.push({ key: '4.[M+H]+', value: this.compoundDetail.msData.parentValue4 });
+        this.spectrumInfoPositiveArray.push({ key: '5.[M+Na]+', value: this.compoundDetail.msData.parentValue5 });
+        this.spectrumInfoPositiveArray.push({ key: '6.[M+NH4]+', value: this.compoundDetail.msData.parentValue6 });
+        this.spectrumInfoPositiveArray.push({ key: 'MS Fragment Ions', value: this.compoundDetail.msData.fragmentsValues2 });
+        this.spectrumInfoPositiveArray.push({ key: 'MS Fragmentation Data from Reference Standards', value: this.compoundDetail.msData.dataSource2 });
+        this.spectrumInfoPositiveArray.push({ key: 'References Sources of MS Fragmentation Data', value: this.compoundDetail.msData.referenceCodes2 });
         this.imagesAddArray.push({ key: 'Structure Picture', value: this.compoundDetail.structurePicAdd });
         this.imagesAddArray.push({ key: 'LC-MS/MS Spectrum - 10V, Negative', value: this.compoundDetail.msData.spectrumPicAddArray1[0] });
         this.imagesAddArray.push({ key: 'LC-MS/MS Spectrum - 40V, Negative', value: this.compoundDetail.msData.spectrumPicAddArray1[1] });
