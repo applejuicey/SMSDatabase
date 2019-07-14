@@ -60,16 +60,16 @@
 
               <div class="mt-3">
                 <v-btn color="primary" @click="toMassQueryPage()" class="hidden-xs-only">
-                  <v-icon>search</v-icon>Mass Query
+                  <v-icon>format_list_numbered</v-icon>Mass Query
                 </v-btn>
                 <v-btn color="primary" @click="toMassQueryPage()" class="hidden-sm-and-up" icon>
-                  <v-icon>search</v-icon>
+                  <v-icon>format_list_numbered</v-icon>
                 </v-btn>
                 <v-btn color="primary" @click="toNameQueryPage()" class="hidden-xs-only">
-                  <v-icon>search</v-icon>Name Query
+                  <v-icon>sort_by_alpha</v-icon>Name Query
                 </v-btn>
                 <v-btn color="primary" @click="toNameQueryPage()" class="hidden-sm-and-up" icon>
-                  <v-icon>search</v-icon>
+                  <v-icon>sort_by_alpha</v-icon>
                 </v-btn>
               </div>
 
@@ -88,16 +88,16 @@
           </v-alert>
           <div class="text-xs-center">
             <v-btn color="primary" @click="toMassQueryPage()" class="hidden-xs-only">
-              <v-icon>search</v-icon>Mass Query
+              <v-icon>format_list_numbered</v-icon>Mass Query
             </v-btn>
             <v-btn color="primary" @click="toMassQueryPage()" class="hidden-sm-and-up" icon>
-              <v-icon>search</v-icon>
+              <v-icon>format_list_numbered</v-icon>
             </v-btn>
             <v-btn color="primary" @click="toNameQueryPage()" class="hidden-xs-only">
-              <v-icon>search</v-icon>Name Query
+              <v-icon>sort_by_alpha</v-icon>Name Query
             </v-btn>
             <v-btn color="primary" @click="toNameQueryPage()" class="hidden-sm-and-up" icon>
-              <v-icon>search</v-icon>
+              <v-icon>sort_by_alpha</v-icon>
             </v-btn>
           </div>
         </v-flex>
@@ -111,16 +111,16 @@
           </v-alert>
           <div class="text-xs-center">
             <v-btn color="primary" @click="toMassQueryPage()" class="hidden-xs-only">
-              <v-icon>search</v-icon>Mass Query
+              <v-icon>format_list_numbered</v-icon>Mass Query
             </v-btn>
             <v-btn color="primary" @click="toMassQueryPage()" class="hidden-sm-and-up" icon>
-              <v-icon>search</v-icon>
+              <v-icon>format_list_numbered</v-icon>
             </v-btn>
             <v-btn color="primary" @click="toNameQueryPage()" class="hidden-xs-only">
-              <v-icon>search</v-icon>Name Query
+              <v-icon>sort_by_alpha</v-icon>Name Query
             </v-btn>
             <v-btn color="primary" @click="toNameQueryPage()" class="hidden-sm-and-up" icon>
-              <v-icon>search</v-icon>
+              <v-icon>sort_by_alpha</v-icon>
             </v-btn>
           </div>
         </v-flex>
@@ -134,22 +134,22 @@
           </v-alert>
           <div class="text-xs-center">
             <v-btn color="primary" @click="toMassQueryPage()" class="hidden-xs-only">
-              <v-icon>search</v-icon>Mass Query
+              <v-icon>format_list_numbered</v-icon>Mass Query
             </v-btn>
             <v-btn color="primary" @click="toMassQueryPage()" class="hidden-sm-and-up" icon>
-              <v-icon>search</v-icon>
+              <v-icon>format_list_numbered</v-icon>
             </v-btn>
             <v-btn color="primary" @click="toNameQueryPage()" class="hidden-xs-only">
-              <v-icon>search</v-icon>Name Query
+              <v-icon>sort_by_alpha</v-icon>Name Query
             </v-btn>
             <v-btn color="primary" @click="toNameQueryPage()" class="hidden-sm-and-up" icon>
-              <v-icon>search</v-icon>
+              <v-icon>sort_by_alpha</v-icon>
             </v-btn>
           </div>
         </v-flex>
       </v-layout>
 
-      <v-dialog v-model="modal" persistent max-width="600px">
+      <v-dialog v-model="modal" persistent max-width="800px">
         <v-card>
           <v-toolbar color="primary" dark>
             <v-toolbar-title>{{ modalHeader }}</v-toolbar-title>

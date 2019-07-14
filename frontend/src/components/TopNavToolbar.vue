@@ -33,6 +33,10 @@
       </v-toolbar-items>
       <v-toolbar-items class="hidden-sm-and-up white--text">
         <v-btn icon
+               @click="toClassifyPage()">
+          <v-icon>view_module</v-icon>
+        </v-btn>
+        <v-btn icon
                @click="toSearchPage()">
           <v-icon>search</v-icon>
         </v-btn>
