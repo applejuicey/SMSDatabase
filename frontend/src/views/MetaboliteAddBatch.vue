@@ -125,6 +125,13 @@
           // error
         }
       },
+      processImage: function (str, uniqueID) {
+        if (str === null || str === '0') {
+          return 'empty';
+        } else {
+          return uniqueID;
+        }
+      },
       getEmptyMetabolite: function () {
         return {
           uniqueID: null,
@@ -279,6 +286,12 @@
                 }
                 singleMetabolite.msData.fragmentsValues2.push(self.processRawString(dataArray[j][k], 'float'));
               }
+              // [329,333]是图片信息
+              singleMetabolite.structurePicAdd = self.processImage(self.processRawString(dataArray[j][329], 'string').trim(), self.processRawString(dataArray[j][0], 'string'));
+              singleMetabolite.msData.spectrumPicAddArray1[0] = self.processImage(self.processRawString(dataArray[j][330], 'string').trim(), self.processRawString(dataArray[j][0], 'string'));
+              singleMetabolite.msData.spectrumPicAddArray1[1] = self.processImage(self.processRawString(dataArray[j][331], 'string').trim(), self.processRawString(dataArray[j][0], 'string'));
+              singleMetabolite.msData.spectrumPicAddArray1[2] = self.processImage(self.processRawString(dataArray[j][332], 'string').trim(), self.processRawString(dataArray[j][0], 'string'));
+              singleMetabolite.msData.spectrumPicAddArray2[0] = self.processImage(self.processRawString(dataArray[j][333], 'string').trim(), self.processRawString(dataArray[j][0], 'string'));
               // console.log(singleMetabolite)
               self.rawDataArray.push(singleMetabolite);
             }

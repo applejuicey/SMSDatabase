@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="elevation-1 transparent">
+    <v-card class="elevation-1 transparent" style="height: 350px">
       <v-card-text class="text-xs-center">
         <v-icon x-large class="primary--text">{{cardInfo.iconName}}</v-icon>
       </v-card-text>

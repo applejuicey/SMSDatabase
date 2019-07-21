@@ -23,14 +23,14 @@
     </v-parallax>
 
     <v-container fluid grid-list-md>
-      <v-layout row wrap justify-center>
-        <v-flex>
-          <div class="text-xs-center">
-            <div class="headline">Cras facilisis mi vitae nunc</div>
-            <div class="subheading">Cras facilisis mi vitae nunc</div>
-          </div>
-        </v-flex>
-      </v-layout>
+<!--      <v-layout row wrap justify-center>-->
+<!--        <v-flex>-->
+<!--          <div class="text-xs-center">-->
+<!--            <div class="headline">Cras facilisis mi vitae nunc</div>-->
+<!--            <div class="subheading">Cras facilisis mi vitae nunc</div>-->
+<!--          </div>-->
+<!--        </v-flex>-->
+<!--      </v-layout>-->
       <v-layout row wrap justify-center>
         <v-flex>
           <v-layout row wrap justify-center>
@@ -62,13 +62,15 @@
             <v-card-title primary-title class="justify-center">
               <div class="headline text-xs-center">
                 <v-icon class="primary--text">info</v-icon>
-                Cras facilisis
+                About our database
               </div>
             </v-card-title>
             <v-card-text>
-              Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-              Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+              Entering into “Saponins Mass Spectrometry Database” website, we provide three searching functions, including “CLASSIFY”, “SEARCH” and “METABOLITE”.
+              The “CLASSIFY” function tells you which components are likely to be saponins.
+              User can identify saponins through parent and daughter ions data from high-resolution mass spectrometry in the “SEARCH” function.
+              One can also search their desired saponins by inputting full or partial name into the “METABOLITE” function.
+              It is suggested that the “SEARCH” function should be run after the execution of the “CLASSIFY” function when you are analyzing herbal mixtures.
             </v-card-text>
           </v-card>
         </v-flex>
@@ -82,20 +84,20 @@
             </v-card-title>
             <v-card-text>
               <v-list class="transparent">
-                <v-list-tile class="justify-center">
-                  <v-list-tile-action>
-                    <v-icon class="primary--text">phone</v-icon>
-                  </v-list-tile-action>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Cras facilisis</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
+<!--                <v-list-tile>-->
+<!--                  <v-list-tile-action>-->
+<!--                    <v-icon class="primary&#45;&#45;text">phone</v-icon>-->
+<!--                  </v-list-tile-action>-->
+<!--                  <v-list-tile-content>-->
+<!--                    <v-list-tile-title>Cras facilisis</v-list-tile-title>-->
+<!--                  </v-list-tile-content>-->
+<!--                </v-list-tile>-->
                 <v-list-tile>
                   <v-list-tile-action>
                     <v-icon class="primary--text">place</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>Cras facilisis</v-list-tile-title>
+                    <v-list-tile-title>No. 639, Longmian Avenue, Jiangning District, Nanjing, Jiangsu Province, China</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
@@ -103,7 +105,7 @@
                     <v-icon class="primary--text">email</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>Cras facilisis</v-list-tile-title>
+                    <v-list-tile-title>zhouwei19860506@163.com</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list>
@@ -125,25 +127,24 @@ export default {
   data: () => ({
     mainPageCardInfoArray: [
       {
-        iconName: 'color_lens',
-        cardTitle: 'Cras facilisis',
-        cardText: `Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.`
+        iconName: 'view_module',
+        cardTitle: 'the “CLASSIFY” Function',
+        cardText: `Saponins are screened with high predictive accuracies when their mass data from high-resolution
+         mass spectrometry is input into CSV file, where one column is compound ID and the other column is mass.
+         (Noting: The “CLASSIFY” function only tells users whether or not your mass of components belongs to saponins.)`
       },
       {
-        iconName: 'flash_on',
-        cardTitle: 'Cras facilisis',
-        cardText: `Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.`
+        iconName: 'search',
+        cardTitle: 'the “SEARCH” Function',
+        cardText: `In the “MS Ion Search”, saponins are found by parent ions with certain mass tolerance under
+        positive or negative ion mode. After MS1 search, daughter ions with certain mass tolerance under positive
+         or negative ion mode are used to further confirm the saponins in the “MS/MS Ion Search”.
+         (Warning: “MS/MS Ion Search” function can not work if no saponins are found in “MS Ion Search”)`
       },
       {
-        iconName: 'build',
-        cardTitle: 'Cras facilisis',
-        cardText: `Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.`
+        iconName: 'list',
+        cardTitle: 'the “METABOLITE” Function',
+        cardText: `Saponins are found through common name input. Full or partial name search are both permitted.`
       },
     ],
   }),

@@ -101,12 +101,12 @@
         self.searchLoading = true;
         self.tableLoading = true;
         try {
-          const result = await this.$apollo.query({
+          const result = await self.$apollo.query({
             query: COMPOUNDSWHERE,
             fetchPolicy: 'no-cache',
             variables: {
               where: {
-                commonName_contains: this.keyword,
+                commonName_contains: self.keyword,
               },
             },
           });
