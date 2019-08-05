@@ -2,7 +2,7 @@
   <div class="home">
 
     <v-parallax height="600"
-                src="https://images.unsplash.com/photo-1564697366559-f2b400ce529a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
+                :src="homeImage1Address">
       <v-layout column align-center justify-center>
         <v-card class="transparent elevation-12 mb-2 hidden-md-and-up">
           <v-card-text class="display-1 font-weight-light white--text">
@@ -49,7 +49,7 @@
     </v-container>
 
     <v-parallax height="300"
-                src="https://images.unsplash.com/photo-1536316754104-90daa92e4eb0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
+                :src="homeImage2Address">
       <v-layout column align-center justify-center>
         <div class="display-1 font-weight-light">World's Best Saponins Mass Spectrometry Database</div>
       </v-layout>
@@ -160,6 +160,8 @@ export default {
         Both full and partial name searches are allowed.`
       },
     ],
+    homeImage1Address: '/images/home_image2.jpg',
+    homeImage2Address: '/images/home_image2.jpg',
   }),
   components: {
     MainPageCard,
