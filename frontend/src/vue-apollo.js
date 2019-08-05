@@ -8,7 +8,8 @@ const httpLink = new HttpLink({
   // 需要使用绝对路径
   // uri: 'http://106.13.97.232:4000/',
   // uri: 'http://localhost:4000/',
-  uri: 'http://39.98.178.160:4000/',
+  // uri: 'http://39.98.178.160:4000/',
+  uri: 'http://47.92.73.208:4000/',
 });
 
 const cache = new InMemoryCache();
