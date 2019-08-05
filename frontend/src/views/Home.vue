@@ -2,7 +2,7 @@
   <div class="home">
 
     <v-parallax height="600"
-                src="https://images.unsplash.com/photo-1548614416-2a3cb67cdbba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
+                src="https://images.unsplash.com/photo-1564697366559-f2b400ce529a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
       <v-layout column align-center justify-center>
         <v-card class="transparent elevation-12 mb-2 hidden-md-and-up">
           <v-card-text class="display-1 font-weight-light white--text">
@@ -14,8 +14,8 @@
             Saponins Mass Spectrometry Database
           </v-card-text>
         </v-card>
-        <div class="subheading font-weight-regular hidden-md-and-up white--text mb-3">Provide assistance to your research!</div>
-        <div class="display-1 font-weight-regular hidden-sm-and-down white--text mb-5">Provide assistance to your research!</div>
+        <div class="subheading font-weight-regular hidden-md-and-up white--text mb-3">Provide assistance to your research</div>
+        <div class="display-1 font-weight-regular hidden-sm-and-down white--text mb-5">Provide assistance to your research</div>
         <v-btn class="primary white--text" large @click="toSearchPage()">
           Search Now!
         </v-btn>
@@ -66,11 +66,12 @@
               </div>
             </v-card-title>
             <v-card-text>
-              Entering into “Saponins Mass Spectrometry Database” website, we provide three searching functions, including “CLASSIFY”, “SEARCH” and “METABOLITE”.
-              The “CLASSIFY” function tells you which components are likely to be saponins.
-              User can identify saponins through parent and daughter ions data from high-resolution mass spectrometry in the “SEARCH” function.
-              One can also search their desired saponins by inputting full or partial name into the “METABOLITE” function.
-              It is suggested that the “SEARCH” function should be run after the execution of the “CLASSIFY” function when you are analyzing herbal mixtures.
+              Through “Saponins Mass Spectrometry Database” website, we provide three search functions:
+              “CLASSIFY”, “SEARCH” and “METABOLITE”. “CLASSIFY” tells users which components possibly belong
+              to saponins. Users can identify saponins through parents and daughter ions data from
+              high-resolution mass spectrometry in “SEARCH” function. Users can also search their desired
+              saponins by inputting full or partial name into “METABOLITE”.
+              For herbal mixtures analysis, we recommend “SEARCH” to be run after “CLASSIFY”.
             </v-card-text>
           </v-card>
         </v-flex>
@@ -97,7 +98,15 @@
                     <v-icon class="primary--text">place</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>No. 639, Longmian Avenue, Jiangning District, Nanjing, Jiangsu Province, China</v-list-tile-title>
+                    <v-list-tile-title>#639 Longmian Avenue, Jiangning District, Nanjing, 211198, P.R. China.</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-action>
+                    <v-icon class="primary--text">email</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>qilw@cpu.edu.cn</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
@@ -128,23 +137,27 @@ export default {
     mainPageCardInfoArray: [
       {
         iconName: 'view_module',
-        cardTitle: 'the “CLASSIFY” Function',
-        cardText: `Saponins are screened with high predictive accuracies when their mass data from high-resolution
-         mass spectrometry is input into CSV file, where one column is compound ID and the other column is mass.
-         (Noting: The “CLASSIFY” function only tells users whether or not your mass of components belongs to saponins.)`
+        cardTitle: 'The “CLASSIFY” Function',
+        cardText: `Saponins are screened with high predictive accuracies according to their mass data
+        from high-resolution mass spectrometry. The mass data must be input as a CSV file,
+        where the first column is compound ID and the second column is mass.
+        (Noting: The “CLASSIFY” function only tells users whether or not a given component
+        with corresponding mass belongs to saponins.)`
       },
       {
         iconName: 'search',
-        cardTitle: 'the “SEARCH” Function',
-        cardText: `In the “MS Ion Search”, saponins are found by parent ions with certain mass tolerance under
-        positive or negative ion mode. After MS1 search, daughter ions with certain mass tolerance under positive
-         or negative ion mode are used to further confirm the saponins in the “MS/MS Ion Search”.
-         (Warning: “MS/MS Ion Search” function can not work if no saponins are found in “MS Ion Search”)`
+        cardTitle: 'The “SEARCH” Function',
+        cardText: `In the “MS Ion Search”, saponins are searched against parent ions with
+         certain mass tolerance under positive or negative ion mode. After MS ion search,
+         daughter ions with certain mass tolerance are used to further confirm the saponins
+          in the “MS/MS Ion Search”. (Warning: “MS/MS Ion Search” function will be disabled
+          if no saponins are found in “MS Ion Search”)`
       },
       {
         iconName: 'list',
-        cardTitle: 'the “METABOLITE” Function',
-        cardText: `Saponins are found through common name input. Full or partial name search are both permitted.`
+        cardTitle: 'The “METABOLITE” Function',
+        cardText: `Saponins can be searched with common name inputting.
+        Both full and partial name searches are allowed.`
       },
     ],
   }),

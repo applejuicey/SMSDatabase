@@ -47,8 +47,8 @@
                 <v-subheader class="title">Images</v-subheader>
                 <v-data-table :items="imagesAddArray" hide-actions hide-headers>
                   <template v-slot:items="props">
-                    <td class="text-xs-left left-column">{{ props.item.key }}:</td>
-                    <td class="text-xs-left right-column justify-center px-0">
+                    <td class="text-xs-left left-column-image">{{ props.item.key }}:</td>
+                    <td class="text-xs-left right-column-image justify-center px-0">
                       <v-icon small color="success" class="mr-2 cursor-pointer" @click="showImageModal(props.item.key, props.item.value)">
                         search
                       </v-icon>
@@ -244,10 +244,10 @@
         this.spectrumInfoPositiveArray.push({ key: 'MS Fragmentation Data from Reference Standards', value: this.compoundDetail.msData.dataSource2 });
         this.spectrumInfoPositiveArray.push({ key: 'References Sources of MS Fragmentation Data', value: this.compoundDetail.msData.referenceCodes2 });
         this.imagesAddArray.push({ key: 'Structure Picture', value: this.compoundDetail.structurePicAdd });
-        this.imagesAddArray.push({ key: 'LC-MS/MS Spectrum - 10V, Negative', value: this.compoundDetail.msData.spectrumPicAddArray1[0] });
-        this.imagesAddArray.push({ key: 'LC-MS/MS Spectrum - 40V, Negative', value: this.compoundDetail.msData.spectrumPicAddArray1[1] });
-        this.imagesAddArray.push({ key: 'LC-MS/MS Spectrum - 70V, Negative', value: this.compoundDetail.msData.spectrumPicAddArray1[2] });
-        this.imagesAddArray.push({ key: 'LC-MS/MS Spectrum - 200V, Positive', value: this.compoundDetail.msData.spectrumPicAddArray2[0] });
+        this.imagesAddArray.push({ key: 'LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 10V', value: this.compoundDetail.msData.spectrumPicAddArray1[0] });
+        this.imagesAddArray.push({ key: 'LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 40V', value: this.compoundDetail.msData.spectrumPicAddArray1[1] });
+        this.imagesAddArray.push({ key: 'LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 70V', value: this.compoundDetail.msData.spectrumPicAddArray1[2] });
+        this.imagesAddArray.push({ key: 'LC-MS Spectrum - Positive mode; Fragmentor voltage, 200V; Collision energy, 0V', value: this.compoundDetail.msData.spectrumPicAddArray2[0] });
       },
       loadMetabolite: async function () {
         let self = this;
@@ -322,5 +322,11 @@
   }
   .right-column {
     width: 60%;
+  }
+  .left-column-image {
+    width: 70%;
+  }
+  .right-column-image {
+    width: 30%;
   }
 </style>

@@ -32,9 +32,15 @@ const UPDATEUSER = gql`mutation ($data: UserUpdateInput!, $where: UserWhereUniqu
 
 const COMPOUNDWHERE = gql`query ($where: CompoundWhereUniqueInput!) {
                                   compound(where: $where) {
+                                    id
                                     uniqueID
+                                    structurePicAdd
                                     commonName
                                     chemicalFormula
+                                    smiles
+                                    casCode
+                                    chemSpiderID
+                                    pubChemCID
                                     msData{
                                       parentValue1
                                       parentValue2
@@ -42,6 +48,17 @@ const COMPOUNDWHERE = gql`query ($where: CompoundWhereUniqueInput!) {
                                       parentValue4
                                       parentValue5
                                       parentValue6
+                                      fragmentsValues1
+                                      fragmentsValues2
+                                      dataSource1
+                                      referenceCodes1
+                                      dataSource2
+                                      referenceCodes2
+                                      spectrumPicAddArray1
+                                      spectrumPicAddArray2
+                                    }
+                                    literatureSource{
+                                      sourceCodes
                                     }
                                   }
                                 }`;
