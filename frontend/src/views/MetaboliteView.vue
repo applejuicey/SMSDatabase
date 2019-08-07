@@ -285,10 +285,10 @@
       showImageModal: function (imgType, imgAddress) {
         const imageMap = new Map()
             .set('Structure Picture', ['/images/structure/', '.jpg'])
-            .set('LC-MS/MS Spectrum - 10V, Negative', ['/images/ms/negative/10/', '_10.png'])
-            .set('LC-MS/MS Spectrum - 40V, Negative', ['/images/ms/negative/40/', '_40.png'])
-            .set('LC-MS/MS Spectrum - 70V, Negative', ['/images/ms/negative/70/', '_70.png'])
-            .set('LC-MS/MS Spectrum - 200V, Positive', ['/images/ms/positive/200/', '_200.png']);
+            .set('LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 10V', ['/images/ms/negative/10/', '_10.png'])
+            .set('LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 40V', ['/images/ms/negative/40/', '_40.png'])
+            .set('LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 70V', ['/images/ms/negative/70/', '_70.png'])
+            .set('LC-MS Spectrum - Positive mode; Fragmentor voltage, 200V; Collision energy, 0V', ['/images/ms/positive/200/', '_200.png']);
         const imageAddressFragmentsArray = imageMap.get(imgType);
         if (imgAddress === 'empty' || imgAddress === null || imgAddress === undefined) {
           this.modalImageProvided = false;
