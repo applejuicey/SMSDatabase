@@ -160,7 +160,7 @@ export default {
         Both full and partial name searches are allowed.`
       },
     ],
-    homeImage1Address: '/images/home_image2.jpg',
+    homeImage1Address: '/images/home_image1.jpg',
     homeImage2Address: '/images/home_image2.jpg',
   }),
   components: {
