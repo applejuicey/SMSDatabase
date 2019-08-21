@@ -65,7 +65,7 @@
                 About our database
               </div>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="text-sm-justify">
               Through “Saponins Mass Spectrometry Database” website, we provide three search functions:
               “CLASSIFY”, “SEARCH” and “METABOLITE”. “CLASSIFY” tells users which components possibly belong
               to saponins. Users can identify saponins through parents and daughter ions data from

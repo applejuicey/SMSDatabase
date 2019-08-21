@@ -7,7 +7,7 @@
       <v-card-title primary-title class="justify-center">
         <div class="headline text-xs-center">{{cardInfo.cardTitle}}</div>
       </v-card-title>
-      <v-card-text>{{cardInfo.cardText}}</v-card-text>
+      <v-card-text class="text-sm-justify">{{cardInfo.cardText}}</v-card-text>
     </v-card>
   </div>
 </template>
@@ -20,3 +20,7 @@
     }
   }
 </script>
+
+<style scoped>
+
+</style>
