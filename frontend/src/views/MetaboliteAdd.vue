@@ -31,7 +31,7 @@
                       </v-layout>
                       <v-layout>
                         <v-flex xs12 md4>
-                          <v-text-field v-model="formData.casCode" label="CAS Code"></v-text-field>
+                          <v-text-field v-model="formData.casCode" label="CAS Number"></v-text-field>
                         </v-flex>
                         <v-flex xs12 md4>
                           <v-text-field v-model="formData.chemSpiderID" label="ChemSpider ID"></v-text-field>
@@ -66,25 +66,25 @@
                           <v-text-field v-model="formData.msData.parentValue1" label="1.[M-H]-"></v-text-field>
                         </v-flex>
                         <v-flex xs12 md4>
-                          <v-text-field v-model="formData.msData.parentValue2" label="2.[M+CL]-"></v-text-field>
+                          <v-text-field v-model="formData.msData.parentValue2" label="2.[M+Cl]-"></v-text-field>
                         </v-flex>
                         <v-flex xs12 md4>
-                          <v-text-field v-model="formData.msData.parentValue3" label="3.[M-H+FA]-"></v-text-field>
+                          <v-text-field v-model="formData.msData.parentValue3" label="3.[M+FA-H]-"></v-text-field>
                         </v-flex>
                       </v-layout>
                       <v-layout>
                         <v-flex xs12>
-                          <v-text-field v-model="formData.msData.fragmentsValues1" label="MS Fragment Ions(Negative)"></v-text-field>
+                          <v-text-field v-model="formData.msData.fragmentsValues1" label="Parent & Sugar Fragment Ions(Negative)"></v-text-field>
                         </v-flex>
                       </v-layout>
                       <v-layout>
                         <v-flex xs12>
-                          <v-text-field v-model="formData.msData.dataSource1" label="MS Fragmentation Data from Reference Standards(Negative)"></v-text-field>
+                          <v-text-field v-model="formData.msData.dataSource1" label="Fragment Ions Data from Reference Standards(Negative)"></v-text-field>
                         </v-flex>
                       </v-layout>
                       <v-layout>
                         <v-flex xs12>
-                          <v-text-field v-model="formData.msData.referenceCodes1" label="Reference Sources of Saponins(Negative)"></v-text-field>
+                          <v-text-field v-model="formData.msData.referenceCodes1" label="Reference Sources of Fragment Ions Data(Negative)"></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -111,17 +111,17 @@
                       </v-layout>
                       <v-layout>
                         <v-flex xs12>
-                          <v-text-field v-model="formData.msData.fragmentsValues2" label="MS Fragment Ions(Positive)"></v-text-field>
+                          <v-text-field v-model="formData.msData.fragmentsValues2" label="Parent Fragment Ions(Positive)"></v-text-field>
                         </v-flex>
                       </v-layout>
                       <v-layout>
                         <v-flex xs12>
-                          <v-text-field v-model="formData.msData.dataSource2" label="MS Fragmentation Data from Reference Standards(Positive)"></v-text-field>
+                          <v-text-field v-model="formData.msData.dataSource2" label="Fragment Ions Data from Reference Standards(Positive)"></v-text-field>
                         </v-flex>
                       </v-layout>
                       <v-layout>
                         <v-flex xs12>
-                          <v-text-field v-model="formData.msData.referenceCodes2" label="Reference Sources of Saponins(Positive)"></v-text-field>
+                          <v-text-field v-model="formData.msData.referenceCodes2" label="Reference Sources of Fragment Ions Data(Positive)"></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -139,10 +139,10 @@
                       <v-layout>
                         <v-flex xs12>
                           <v-checkbox v-model="selectedImagesArray" label="Structure Picture" value="sp"></v-checkbox>
-                          <v-checkbox v-model="selectedImagesArray" label="LC-MS/MS Spectrum - 10V, Negative" value="ms10n"></v-checkbox>
-                          <v-checkbox v-model="selectedImagesArray" label="LC-MS/MS Spectrum - 40V, Negative" value="ms40n"></v-checkbox>
-                          <v-checkbox v-model="selectedImagesArray" label="LC-MS/MS Spectrum - 70V, Negative" value="ms70n"></v-checkbox>
-                          <v-checkbox v-model="selectedImagesArray" label="LC-MS/MS Spectrum - 200V, Positive" value="ms200p"></v-checkbox>
+                          <v-checkbox v-model="selectedImagesArray" label="LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 10V" value="ms10n"></v-checkbox>
+                          <v-checkbox v-model="selectedImagesArray" label="LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 40V" value="ms40n"></v-checkbox>
+                          <v-checkbox v-model="selectedImagesArray" label="LC-MS Spectrum - Negative mode; Fragmentor voltage, 120V; Collision energy, 70V" value="ms70n"></v-checkbox>
+                          <v-checkbox v-model="selectedImagesArray" label="LC-MS Spectrum - Positive mode; Fragmentor voltage, 200V; Collision energy, 0V" value="ms200p"></v-checkbox>
                         </v-flex>
                       </v-layout>
                     </v-container>
