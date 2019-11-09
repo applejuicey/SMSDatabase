@@ -106,15 +106,7 @@
                     <v-icon class="primary--text">email</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>qilw@cpu.edu.cn</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-list-tile>
-                  <v-list-tile-action>
-                    <v-icon class="primary--text">email</v-icon>
-                  </v-list-tile-action>
-                  <v-list-tile-content>
-                    <v-list-tile-title>zhouwei19860506@163.com</v-list-tile-title>
+                    <v-list-tile-title>wzhou@cpu.edu.cn</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list>
