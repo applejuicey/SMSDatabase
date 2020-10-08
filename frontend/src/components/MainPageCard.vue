@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-card class="elevation-1 transparent" style="height: 350px">
+    <v-card class="elevation-1 transparent" style="min-height: 400px">
       <v-card-text class="text-xs-center">
         <v-icon x-large class="primary--text">{{cardInfo.iconName}}</v-icon>
       </v-card-text>
-      <v-card-title primary-title class="justify-center">
-        <div class="headline text-xs-center">{{cardInfo.cardTitle}}</div>
+      <v-card-title primary-title class="justify-center py-0">
+        <div class="headline text-xs-center font-sui font-weight-thin">{{cardInfo.cardTitle}}</div>
       </v-card-title>
-      <v-card-text class="text-sm-justify">{{cardInfo.cardText}}</v-card-text>
+      <v-card-text class="font-sui font-weight-thin">{{cardInfo.cardText}}</v-card-text>
     </v-card>
   </div>
 </template>
@@ -22,5 +22,7 @@
 </script>
 
 <style scoped>
-
+  .font-sui {
+    font-family: Segoe UI, sans-serif !important;
+  }
 </style>
